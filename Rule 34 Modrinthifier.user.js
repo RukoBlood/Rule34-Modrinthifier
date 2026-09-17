@@ -2,7 +2,7 @@
 // ==UserScript==
 // @name         Rule34.xxx — Modern UI
 // @namespace    https://rule34.xxx/
-// @version      3.7.0
+// @version      3.8.0
 // @description  Modernize Rule34.xxx interface
 // @author       RukoBlood
 // @match        https://rule34.xxx/*
@@ -2315,6 +2315,33 @@
             transform:translateY(0) !important;
         }
 
+        /*=====================================================
+         THUMBNAILS                                            *
+         ===================================================== */
+
+        /* POST LIST THUMBNAILS */
+        html.r34-post-list span.thumb {
+            border-radius:10px !important;
+            overflow:visible !important;
+        }
+
+        html.r34-post-list span.thumb img.preview {
+            border-radius:10px !important;
+        }
+
+        /* ANIMATED / WEBM THUMBNAILS */
+        html.r34-post-list .webm-thumb {
+            border-width:3px !important;
+            border-style:solid !important;
+            border-color:#93c5fd !important;
+
+            border-radius:10px !important;
+
+            box-shadow:
+            0 0 6px rgba(147,197,253,.65),
+            0 0 14px rgba(147,197,253,.40),
+            0 0 24px rgba(147,197,253,.18) !important;
+        }
 
     `);
 

@@ -1,5 +1,10 @@
 # Changelogs
 
+## Beta 4 (3.8.0 Internal) - Minor update 2.
+- Redesigned posts thumbnails
+  - Added Round borders
+  - Webms now have a lighter border with glow. Cool.
+
 ## Beta 3 (3.7.0 Internal) - Minor update 1.
 - Redesigned Edit and Respond Tab.
 

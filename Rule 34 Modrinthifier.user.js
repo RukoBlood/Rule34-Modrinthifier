@@ -2,9 +2,9 @@
 // ==UserScript==
 // @name         Rule34.xxx — Modern UI
 // @namespace    https://rule34.xxx/
-// @version      3.6.2
+// @version      3.7.0
 // @description  Modernize Rule34.xxx interface
-// @author       You
+// @author       RukoBlood
 // @match        https://rule34.xxx/*
 // @match        https://www.rule34.xxx/*
 // @grant        GM_addStyle
@@ -2145,6 +2145,176 @@
                 border-radius:11px !important;
             }
         }
+
+        /*=====================================================
+         COMMENT FORM                                          *
+         ===================================================== */
+
+        html.r34-post-view #comment_form textarea {
+            display:block !important;
+            width:100% !important;
+            min-height:150px !important;
+            padding:14px 16px !important;
+            box-sizing:border-box !important;
+
+            background:#15181d !important;
+            color:#dce2e8 !important;
+
+            border:1px solid #303640 !important;
+            border-radius:12px !important;
+
+            outline:none !important;
+            font-family:"Inter",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif !important;
+            font-size:15px !important;
+            line-height:1.5 !important;
+
+            resize:vertical !important;
+            transition:border-color .15s ease, box-shadow .15s ease, background .15s ease !important;
+        }
+
+        html.r34-post-view #comment_form textarea:focus {
+            background:#181c22 !important;
+            border-color:#22c55e !important;
+            box-shadow:0 0 0 3px rgba(34,197,94,.12), 0 0 18px rgba(34,197,94,.12) !important;
+        }
+
+        html.r34-post-view #comment_form textarea::placeholder {
+            color:#737983 !important;
+        }
+
+        html.r34-post-view #comment_form input[type="submit"] {
+            display:inline-flex !important;
+            align-items:center !important;
+            justify-content:center !important;
+
+            min-width:140px !important;
+            height:44px !important;
+            padding:0 22px !important;
+            margin-top:10px !important;
+
+            background:linear-gradient(135deg,#22c55e,#16a34a,#15803d) !important;
+            color:#fff !important;
+
+            border:1px solid #23743c !important;
+            border-radius:9999px !important;
+
+            font-family:"Inter",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif !important;
+            font-size:15px !important;
+            font-weight:600 !important;
+            line-height:1 !important;
+
+            cursor:pointer !important;
+            appearance:none !important;
+            -webkit-appearance:none !important;
+
+            box-shadow:0 5px 18px rgba(22,163,74,.24) !important;
+            transition:filter .15s ease, transform .15s ease, box-shadow .15s ease !important;
+        }
+
+        html.r34-post-view #comment_form input[type="submit"]:hover {
+            filter:brightness(1.08) !important;
+            transform:translateY(-1px) !important;
+            box-shadow:0 8px 24px rgba(22,163,74,.34) !important;
+        }
+
+        html.r34-post-view #comment_form input[type="submit"]:active {
+            transform:translateY(0) !important;
+            filter:brightness(.98) !important;
+        }
+
+        /*=====================================================
+         EDIT FORM                                             *
+         ===================================================== */
+
+        html.r34-post-view #edit-form input[type="text"],
+        html.r34-post-view #edit-form textarea {
+            display:block !important;
+            width:100% !important;
+            min-height:44px !important;
+            box-sizing:border-box !important;
+            padding:11px 14px !important;
+            margin:6px 0 12px !important;
+
+            background:#15181d !important;
+            color:#dce2e8 !important;
+
+            border:1px solid #303640 !important;
+            border-radius:10px !important;
+
+            outline:none !important;
+            font-family:"Inter",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif !important;
+            font-size:15px !important;
+            line-height:1.4 !important;
+
+            transition:border-color .15s ease,box-shadow .15s ease,background .15s ease !important;
+        }
+
+        html.r34-post-view #edit-form input[type="text"]:focus,
+        html.r34-post-view #edit-form textarea:focus {
+            background:#181c22 !important;
+            border-color:#22c55e !important;
+            box-shadow:0 0 0 3px rgba(34,197,94,.12),0 0 18px rgba(34,197,94,.10) !important;
+        }
+
+        html.r34-post-view #edit-form input[type="text"]::placeholder,
+        html.r34-post-view #edit-form textarea::placeholder {
+            color:#737983 !important;
+        }
+
+        /* RATING */
+        html.r34-post-view #edit-form input[type="radio"] {
+            width:18px !important;
+            height:18px !important;
+            margin:0 7px 0 0 !important;
+            vertical-align:middle !important;
+
+            accent-color:#22c55e !important;
+            cursor:pointer !important;
+        }
+
+        /* SAVE / UPDATE BUTTON */
+        html.r34-post-view #edit-form input[type="submit"],
+        html.r34-post-view #edit-form button[type="submit"] {
+            display:inline-flex !important;
+            align-items:center !important;
+            justify-content:center !important;
+
+            min-width:140px !important;
+            height:44px !important;
+            padding:0 24px !important;
+            margin-top:8px !important;
+
+            background:linear-gradient(135deg,#22c55e,#16a34a,#15803d) !important;
+            color:#fff !important;
+
+            border:1px solid #23743c !important;
+            border-radius:9999px !important;
+
+            font-family:"Inter",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif !important;
+            font-size:15px !important;
+            font-weight:600 !important;
+            line-height:1 !important;
+
+            cursor:pointer !important;
+            appearance:none !important;
+            -webkit-appearance:none !important;
+
+            box-shadow:0 5px 18px rgba(22,163,74,.24) !important;
+            transition:filter .15s ease,transform .15s ease,box-shadow .15s ease !important;
+        }
+
+        html.r34-post-view #edit-form input[type="submit"]:hover,
+        html.r34-post-view #edit-form button[type="submit"]:hover {
+            filter:brightness(1.08) !important;
+            transform:translateY(-1px) !important;
+            box-shadow:0 8px 24px rgba(22,163,74,.34) !important;
+        }
+
+        html.r34-post-view #edit-form input[type="submit"]:active,
+        html.r34-post-view #edit-form button[type="submit"]:active {
+            transform:translateY(0) !important;
+        }
+
 
     `);
 

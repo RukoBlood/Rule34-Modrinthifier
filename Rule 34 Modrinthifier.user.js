@@ -2,7 +2,7 @@
 // ==UserScript==
 // @name         Rule34.xxx — Modern UI
 // @namespace    https://rule34.xxx/
-// @version      3.8.0
+// @version      3.8.1
 // @description  Modernize Rule34.xxx interface
 // @author       RukoBlood
 // @match        https://rule34.xxx/*
@@ -26,17 +26,13 @@
         window.location.pathname === '/index.php'
     );
 
-    const isPostPage =
-        page === 'post' &&
-        (section === 'list' || section === 'view');
+    const isPostPage = page === 'post' && (section === 'list' || section === 'view');
 
-    const isPostListPage =
-        page === 'post' &&
-        section === 'list';
+    const isPostListPage = page === 'post' && section === 'list';
 
-    const isPostViewPage =
-        page === 'post' &&
-        section === 'view';
+    const isPostViewPage = page === 'post' && section === 'view';
+
+    const isPostAddPage = page === 'post' && section === 'add';
 
     const html = document.documentElement;
 
@@ -54,6 +50,8 @@
     if (isPostViewPage)
         html.classList.add('r34-post-view');
 
+    if (isPostAddPage)
+        html.classList.add('r34-post-add');
 
     /* =========================================================
        LOAD INTER
@@ -2341,6 +2339,181 @@
             0 0 6px rgba(147,197,253,.65),
             0 0 14px rgba(147,197,253,.40),
             0 0 24px rgba(147,197,253,.18) !important;
+        }
+
+        /*=====================================================
+         UPLOAD FORM                                           *
+         ===================================================== */
+        /* POST ADD — UPLOAD FORM */
+
+        /* TEXTBOXES */
+        html.r34-post-add form[enctype="multipart/form-data"] input[type="text"],
+        html.r34-post-add form[enctype="multipart/form-data"] textarea {
+            box-sizing:border-box !important;
+            background:#15181d !important;
+            color:#dce2e8 !important;
+            border:1px solid #303640 !important;
+            border-radius:9px !important;
+            outline:none !important;
+            font-family:"Inter",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif !important;
+            font-size:14px !important;
+            transition:border-color .15s ease,box-shadow .15s ease !important;
+        }
+
+        html.r34-post-add form[enctype="multipart/form-data"] input[type="text"]:focus,
+        html.r34-post-add form[enctype="multipart/form-data"] textarea:focus {
+            border-color:#22c55e !important;
+            box-shadow:0 0 0 3px rgba(34,197,94,.12) !important;
+        }
+
+        /* CHOOSE FILE BUTTON */
+        html.r34-post-add input[type="file"] {
+            color:#c9cdd3 !important;
+            font-family:"Inter",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif !important;
+            font-size:14px !important;
+        }
+
+        html.r34-post-add input[type="file"]::file-selector-button {
+            box-sizing:border-box !important;
+            min-height:44px !important;
+            padding:0 22px !important;
+            margin-right:12px !important;
+
+            background:
+            linear-gradient(#15181d,#15181d) padding-box,
+                linear-gradient(135deg,#86efac,#22c55e,#15803d) border-box !important;
+                color:#e3e6eb !important;
+
+                border:1px solid transparent !important;
+                border-radius:9999px !important;
+
+                font-family:"Inter",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif !important;
+                font-size:14px !important;
+                font-weight:600 !important;
+
+                cursor:pointer !important;
+                appearance:none !important;
+                -webkit-appearance:none !important;
+
+                box-shadow:
+                0 0 10px rgba(34,197,94,.24),
+                0 0 18px rgba(34,197,94,.12) !important;
+
+                transition:filter .15s ease,box-shadow .15s ease,transform .15s ease !important;
+        }
+
+        html.r34-post-add input[type="file"]::file-selector-button:hover {
+            background:
+            linear-gradient(#1b211d,#1b211d) padding-box,
+                linear-gradient(135deg,#bbf7d0,#22c55e,#15803d) border-box !important;
+                box-shadow:
+                0 0 12px rgba(34,197,94,.38),
+                0 0 22px rgba(34,197,94,.20) !important;
+                transform:translateY(-1px) !important;
+        }
+
+        /* UPLOAD BUTTON */
+        html.r34-post-add form[enctype="multipart/form-data"] input[type="submit"],
+        html.r34-post-add form[enctype="multipart/form-data"] button[type="submit"] {
+            display:inline-flex !important;
+            align-items:center !important;
+            justify-content:center !important;
+            box-sizing:border-box !important;
+            min-width:180px !important;
+            height:60px !important;
+            padding:0 30px !important;
+            margin:10px 0 !important;
+
+            background:linear-gradient(135deg,#22c55e,#16a34a,#15803d) !important;
+            color:#fff !important;
+            border:1px solid #23743c !important;
+            border-radius:9999px !important;
+
+            font-family:"Inter",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif !important;
+            font-size:16px !important;
+            font-weight:600 !important;
+            line-height:1 !important;
+
+            cursor:pointer !important;
+            appearance:none !important;
+            -webkit-appearance:none !important;
+
+            box-shadow:0 5px 18px rgba(22,163,74,.24) !important;
+            transition:filter .15s ease,transform .15s ease,box-shadow .15s ease !important;
+        }
+
+        html.r34-post-add form[enctype="multipart/form-data"] input[type="submit"]:hover,
+        html.r34-post-add form[enctype="multipart/form-data"] button[type="submit"]:hover {
+            filter:brightness(1.08) !important;
+            transform:translateY(-1px) !important;
+            box-shadow:0 8px 24px rgba(22,163,74,.34) !important;
+        }
+
+        /* UPLOAD TAG AUTOCOMPLETE */
+        html.r34-post-add .awesomplete > ul {
+            box-sizing:border-box !important;
+            width:100% !important;
+            min-width:0 !important;
+            max-width:min(620px,90vw) !important;
+            max-height:300px !important;
+
+            margin:8px 0 0 !important;
+            padding:6px !important;
+
+            background:#111419 !important;
+            color:#c9cdd3 !important;
+            border:1px solid #245a34 !important;
+            border-radius:12px !important;
+
+            box-shadow:
+            0 0 0 1px rgba(34,197,94,.04),
+                0 0 16px rgba(34,197,94,.14),
+                0 10px 24px rgba(0,0,0,.38) !important;
+
+                overflow-x:hidden !important;
+                overflow-y:auto !important;
+                z-index:99999 !important;
+        }
+
+        html.r34-post-add .awesomplete > ul[hidden],
+        html.r34-post-add .awesomplete > ul:empty {
+            display:none !important;
+        }
+
+        html.r34-post-add .awesomplete > ul > li {
+            display:block !important;
+            box-sizing:border-box !important;
+            width:100% !important;
+
+            margin:0 0 3px !important;
+            padding:9px 11px !important;
+
+            background:#15181d !important;
+            color:#c9cdd3 !important;
+
+            border:1px solid transparent !important;
+            border-radius:8px !important;
+
+            font-size:13px !important;
+            font-weight:500 !important;
+            line-height:1.3 !important;
+            cursor:pointer !important;
+        }
+
+        html.r34-post-add .awesomplete > ul > li:hover,
+        html.r34-post-add .awesomplete > ul > li[aria-selected="true"] {
+            background:#17251c !important;
+            color:#e8f5eb !important;
+            border-color:#2f7942 !important;
+            box-shadow:inset 3px 0 0 #22c55e !important;
+        }
+
+        html.r34-post-add .awesomplete mark {
+            background:rgba(34,197,94,.18) !important;
+            color:#9df2b1 !important;
+            border-radius:4px !important;
+            padding:1px 3px !important;
+            font-weight:700 !important;
         }
 
     `);

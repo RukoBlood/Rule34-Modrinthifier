@@ -7,4 +7,4 @@ Makes rule 34 look like vibecoded site (Or Modrinth).
 3. Done. Go to r34 webpage.
 
 ## State.
-Beta 4 (Internal version 3.8.0).
+Beta 5 (Internal version 3.8.1).

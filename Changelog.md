@@ -1,5 +1,10 @@
 # Changelogs
 
+## Beta 5 (3.8.1 Internal) - Minor update 3
+- Redesigned post upload page
+  - Added new button style
+  - Other stuff is basically copypasting of previous blocks. 
+
 ## Beta 4 (3.8.0 Internal) - Minor update 2.
 - Redesigned posts thumbnails
   - Added Round borders

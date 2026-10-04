@@ -1,5 +1,8 @@
 # Changelogs
 
+## Beta 7 (3.9.5 Internal) - Minor Update 4
+- Redesigned post view page.
+
 ## Beta 6 (3.8.9 Internal) - Moderate Update 1
 - Forum page redesigned
 - Profile page redesigned

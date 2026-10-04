@@ -2,7 +2,7 @@
 // ==UserScript==
 // @name         Rule34.xxx — Modern UI
 // @namespace    https://rule34.xxx/
-// @version      3.8.1
+// @version      3.8.9
 // @description  Modernize Rule34.xxx interface
 // @author       RukoBlood
 // @match        https://rule34.xxx/*
@@ -34,6 +34,10 @@
 
     const isPostAddPage = page === 'post' && section === 'add';
 
+    const isForumListPage = page === 'forum' && section === 'list';
+
+    const isAccountProfilePage = page === 'account' && section === 'profile';
+
     const html = document.documentElement;
 
     html.classList.add('r34-modern');
@@ -52,6 +56,12 @@
 
     if (isPostAddPage)
         html.classList.add('r34-post-add');
+
+    if (isForumListPage)
+        html.classList.add('r34-forum-list');
+
+    if (isAccountProfilePage)
+        html.classList.add('r34-account-profile');
 
     /* =========================================================
        LOAD INTER
@@ -2515,6 +2525,366 @@
             padding:1px 3px !important;
             font-weight:700 !important;
         }
+
+        /*=====================================================
+         FORUM PAGE                                            *
+         ===================================================== */
+
+        /* FORUM LIST */
+
+        /* TABLE */
+        html.r34-forum-list table.highlightable {
+            width:100% !important;
+            box-sizing:border-box !important;
+            border-collapse:separate !important;
+            border-spacing:0 !important;
+            overflow:hidden !important;
+
+            background:#111419 !important;
+            border:1px solid #242a32 !important;
+            border-radius:14px !important;
+
+            color:#c9cdd3 !important;
+            box-shadow:0 4px 18px rgba(0,0,0,.18) !important;
+        }
+
+        html.r34-forum-list table.highlightable th {
+            padding:12px 14px !important;
+
+            background:#15181d !important;
+            color:#e0e4e9 !important;
+
+            border-bottom:1px solid #303640 !important;
+
+            font-size:14px !important;
+            font-weight:700 !important;
+            text-align:left !important;
+        }
+
+        html.r34-forum-list table.highlightable td {
+            padding:11px 14px !important;
+
+            background:#111419 !important;
+            color:#c9cdd3 !important;
+
+            border-bottom:1px solid #20252c !important;
+
+            font-size:14px !important;
+        }
+
+        html.r34-forum-list table.highlightable tr:last-child td {
+            border-bottom:none !important;
+        }
+
+        html.r34-forum-list table.highlightable tr:hover td {
+            background:#151b17 !important;
+        }
+
+        html.r34-forum-list table.highlightable a {
+            color:#aeb4bd !important;
+            text-decoration:none !important;
+        }
+
+        html.r34-forum-list table.highlightable a:hover {
+            color:#86efac !important;
+        }
+
+
+        /* FORUM SEARCH + CREATE TOPIC FIELDS */
+        html.r34-forum-list #content input[type="text"],
+        html.r34-forum-list #content textarea {
+            box-sizing:border-box !important;
+
+            background:#15181d !important;
+            color:#dce2e8 !important;
+
+            border:1px solid #303640 !important;
+            border-radius:9px !important;
+
+            outline:none !important;
+
+            font-family:"Inter",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif !important;
+            font-size:14px !important;
+
+            transition:border-color .15s ease,box-shadow .15s ease,background .15s ease !important;
+        }
+
+        html.r34-forum-list #content input[type="text"] {
+            height:42px !important;
+            padding:0 12px !important;
+        }
+
+        html.r34-forum-list #content textarea {
+            min-height:150px !important;
+            padding:11px 13px !important;
+            resize:vertical !important;
+        }
+
+        html.r34-forum-list #content input[type="text"]:focus,
+        html.r34-forum-list #content textarea:focus {
+            background:#181c22 !important;
+            border-color:#22c55e !important;
+            box-shadow:0 0 0 3px rgba(34,197,94,.12) !important;
+        }
+
+
+        /* SEARCH / CREATE TOPIC BUTTONS */
+        html.r34-forum-list #content input[type="submit"] {
+            display:inline-flex !important;
+            align-items:center !important;
+            justify-content:center !important;
+
+            box-sizing:border-box !important;
+            min-width:140px !important;
+            height:44px !important;
+            padding:0 22px !important;
+            margin:8px 0 !important;
+
+            background:linear-gradient(135deg,#22c55e,#16a34a,#15803d) !important;
+            color:#fff !important;
+
+            border:1px solid #23743c !important;
+            border-radius:9999px !important;
+
+            font-family:"Inter",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif !important;
+            font-size:14px !important;
+            font-weight:600 !important;
+            line-height:1 !important;
+
+            cursor:pointer !important;
+            appearance:none !important;
+            -webkit-appearance:none !important;
+
+            box-shadow:0 5px 18px rgba(22,163,74,.24) !important;
+            transition:filter .15s ease,transform .15s ease,box-shadow .15s ease !important;
+        }
+
+        html.r34-forum-list #content input[type="submit"]:hover {
+            filter:brightness(1.08) !important;
+            transform:translateY(-1px) !important;
+            box-shadow:0 8px 24px rgba(22,163,74,.34) !important;
+        }
+
+        html.r34-forum-list #content input[type="submit"]:active {
+            transform:translateY(0) !important;
+        }
+
+        /* FORUM TABLE — SOLID GREEN LINES */
+        html.r34-forum-list table.highlightable {
+            border:1px solid #245a34 !important;
+            border-collapse:separate !important;
+            border-spacing:0 !important;
+        }
+
+        html.r34-forum-list table.highlightable th,
+        html.r34-forum-list table.highlightable td {
+            border:none !important;
+            border-bottom:1px solid #245a34 !important;
+        }
+
+        html.r34-forum-list table.highlightable tr:last-child td {
+            border-bottom:none !important;
+        }
+
+
+        /* FORUM PAGINATOR */
+        html.r34-forum-list #paginator {
+            display:flex !important;
+            align-items:center !important;
+            justify-content:center !important;
+            flex-wrap:wrap !important;
+            gap:6px !important;
+
+            width:fit-content !important;
+            max-width:96% !important;
+            box-sizing:border-box !important;
+
+            margin:28px auto !important;
+            padding:6px !important;
+
+            background:#111419 !important;
+            border:1px solid #245a34 !important;
+            border-radius:12px !important;
+
+            box-shadow:0 0 16px rgba(34,197,94,.12) !important;
+            color:#9da5af !important;
+        }
+
+        /* PAGE LINKS */
+        html.r34-forum-list #paginator a {
+            display:inline-flex !important;
+            align-items:center !important;
+            justify-content:center !important;
+
+            box-sizing:border-box !important;
+            min-width:38px !important;
+            height:38px !important;
+            padding:0 11px !important;
+            margin:0 !important;
+
+            background:#181c22 !important;
+            color:#9da5af !important;
+
+            border:1px solid #292f37 !important;
+            border-radius:9px !important;
+
+            font-size:14px !important;
+            font-weight:600 !important;
+            line-height:1 !important;
+            text-decoration:none !important;
+        }
+
+        html.r34-forum-list #paginator a:hover {
+            background:#1b2820 !important;
+            color:#e3e8ed !important;
+            border-color:#357546 !important;
+
+            box-shadow:0 0 10px rgba(34,197,94,.14) !important;
+            transform:translateY(-1px) !important;
+        }
+
+        /* CURRENT PAGE */
+        html.r34-forum-list #paginator b,
+        html.r34-forum-list #paginator strong,
+        html.r34-forum-list #paginator span.current,
+        html.r34-forum-list #paginator span.active,
+        html.r34-forum-list #paginator span.selected,
+        html.r34-forum-list #paginator .current,
+        html.r34-forum-list #paginator .active,
+        html.r34-forum-list #paginator .selected {
+            display:inline-flex !important;
+            align-items:center !important;
+            justify-content:center !important;
+
+            box-sizing:border-box !important;
+            min-width:38px !important;
+            height:38px !important;
+            padding:0 11px !important;
+            margin:0 !important;
+
+            background:linear-gradient(135deg,#22c55e,#16a34a) !important;
+            color:#fff !important;
+
+            border:1px solid #22c55e !important;
+            border-radius:9px !important;
+
+            font-size:14px !important;
+            font-weight:700 !important;
+            line-height:1 !important;
+
+            box-shadow:
+            0 0 10px rgba(34,197,94,.24),
+                0 0 22px rgba(34,197,94,.12) !important;
+
+                opacity:1 !important;
+        }
+
+        /*=====================================================
+         PROFILE PAGE
+         ===================================================== */
+
+        /* ACCOUNT PROFILE */
+
+        /* PROFILE TABLES */
+        html.r34-account-profile #content table {
+            width:100% !important;
+            box-sizing:border-box !important;
+
+            border-collapse:separate !important;
+            border-spacing:0 !important;
+
+            background:#111419 !important;
+            color:#c9cdd3 !important;
+
+            border:1px solid #245a34 !important;
+            border-radius:14px !important;
+
+            overflow:hidden !important;
+            box-shadow:0 4px 18px rgba(0,0,0,.18) !important;
+        }
+
+        html.r34-account-profile #content table th {
+            padding:12px 14px !important;
+
+            background:#15181d !important;
+            color:#e0e4e9 !important;
+
+            border:none !important;
+            border-bottom:1px solid #245a34 !important;
+
+            font-size:14px !important;
+            font-weight:700 !important;
+            text-align:left !important;
+        }
+
+        html.r34-account-profile #content table td {
+            padding:11px 14px !important;
+
+            background:#111419 !important;
+            color:#c9cdd3 !important;
+
+            border:none !important;
+            border-bottom:1px solid #245a34 !important;
+
+            font-size:14px !important;
+            vertical-align:middle !important;
+        }
+
+        html.r34-account-profile #content table tr:last-child td {
+            border-bottom:none !important;
+        }
+
+        html.r34-account-profile #content table tr:hover td {
+            background:#151b17 !important;
+        }
+
+
+        /* THUMBNAILS */
+        html.r34-account-profile #content span.thumb {
+            display:inline-block !important;
+            vertical-align:middle !important;
+        }
+
+        html.r34-account-profile #content span.thumb img.preview {
+            display:block !important;
+            border-radius:10px !important;
+        }
+
+
+        /* RECENT UPLOADS — KEEP THUMB + STATUS ALIGNED */
+        html.r34-account-profile #content table td:has(span.thumb) {
+            vertical-align:middle !important;
+            white-space:nowrap !important;
+        }
+
+        html.r34-account-profile #content table td:has(span.thumb) span.thumb {
+            margin-right:10px !important;
+        }
+
+        html.r34-account-profile #content table td:has(span.thumb) br {
+            display:none !important;
+        }
+
+
+        /* STATUS TEXT */
+        html.r34-account-profile #content table td:has(span.thumb) {
+            line-height:1.35 !important;
+        }
+
+        html.r34-account-profile #content table td:has(span.thumb) a {
+            text-decoration:none !important;
+        }
+
+        /* PROFILE — GLOW FOR MODERATION-STATUS POSTS */
+        html.r34-account-profile #content span.thumb img.preview[style*="border"] {
+            border-radius:10px !important;
+            box-shadow:
+            0 0 7px rgba(251,146,60,.55),
+                0 0 16px rgba(251,146,60,.30),
+                0 0 26px rgba(251,146,60,.14) !important;
+        }
+
+    }
 
     `);
 

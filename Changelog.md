@@ -1,5 +1,10 @@
 # Changelogs
 
+## Beta 9 (4.2.0 Internal) - Major Update 3.
+- Redesigned Pools, Tags, Artists, Aliases.
+- It's really big update (5000+ lines of code injects straight into website).
+- TODO: edit ?page=artist&s=update, because it's different shit.
+
 ## Beta 8 (4.0.0 Internal) - Minor Update 5
 - Redesigned iCame Page
 - Fixed table width and vertical separators for My Profile and Forum pages 

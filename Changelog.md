@@ -1,9 +1,12 @@
 # Changelogs
 
+## Beta 10 (4.2.3 Internal) - Moderate Update 2.
+- Comments tab redesigned.
+- Update section in artists fixed.
+
 ## Beta 9 (4.2.0 Internal) - Major Update 3.
 - Redesigned Pools, Tags, Artists, Aliases.
 - It's really big update (5000+ lines of code injects straight into website).
-- TODO: edit ?page=artist&s=update, because it's different shit.
 
 ## Beta 8 (4.0.0 Internal) - Minor Update 5
 - Redesigned iCame Page

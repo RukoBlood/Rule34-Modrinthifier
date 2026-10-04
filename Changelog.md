@@ -1,5 +1,9 @@
 # Changelogs
 
+## Beta 8 (4.0.0 Internal) - Minor Update 5
+- Redesigned iCame Page
+- Fixed table width and vertical separators for My Profile and Forum pages 
+
 ## Beta 7 (3.9.5 Internal) - Minor Update 4
 - Redesigned post view page.
 

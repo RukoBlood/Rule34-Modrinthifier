@@ -2,7 +2,7 @@
 // ==UserScript==
 // @name         Rule34.xxx — Modern UI
 // @namespace    https://rule34.xxx/
-// @version      3.8.9
+// @version      3.9.5
 // @description  Modernize Rule34.xxx interface
 // @author       RukoBlood
 // @match        https://rule34.xxx/*
@@ -38,6 +38,8 @@
 
     const isForumListPage = page === 'forum' && section === 'list';
 
+    const isForumViewPage = page === 'forum' && section === 'view';
+
     const isAccountProfilePage = page === 'account' && section === 'profile';
 
     const html = document.documentElement;
@@ -61,6 +63,9 @@
 
     if (isForumListPage)
         html.classList.add('r34-forum-list');
+
+    if (isForumViewPage)
+        html.classList.add('r34-forum-view');
 
     if (isAccountProfilePage)
         html.classList.add('r34-account-profile');
@@ -2778,6 +2783,361 @@
             0 0 10px rgba(34,197,94,.24),
                 0 0 22px rgba(34,197,94,.12) !important;
 
+                opacity:1 !important;
+        }
+
+        /*=====================================================
+         FORUM VIEW PAGE                                       *
+         ===================================================== */
+
+        html.r34-forum-view #content {
+            color:#c9cdd3 !important;
+        }
+
+        /* Message block */
+        html.r34-forum-view #content .forum-post,
+        html.r34-forum-view #content .post {
+            box-sizing:border-box !important;
+            margin:0 0 14px !important;
+            padding:16px !important;
+            background:#111419 !important;
+            border:1px solid #245a34 !important;
+            border-radius:14px !important;
+            color:#c9cdd3 !important;
+            box-shadow:0 4px 18px rgba(0,0,0,.18) !important;
+        }
+
+        /* Author */
+        html.r34-forum-view #content .forum-post .author,
+        html.r34-forum-view #content .post .author {
+            color:#86efac !important;
+            font-weight:700 !important;
+        }
+
+        /* Data and shit */
+        html.r34-forum-view #content .forum-post .date,
+        html.r34-forum-view #content .post .date {
+            color:#737983 !important;
+            font-size:12px !important;
+        }
+
+        /* Message Text */
+        html.r34-forum-view #content .forum-post .content,
+        html.r34-forum-view #content .post .content {
+            color:#dce2e8 !important;
+            line-height:1.55 !important;
+        }
+
+        /* Links inside */
+        html.r34-forum-view #content .forum-post a,
+        html.r34-forum-view #content .post a {
+            color:#86efac !important;
+        }
+
+        html.r34-forum-view #content .forum-post a:hover,
+        html.r34-forum-view #content .post a:hover {
+            color:#bbf7d0 !important;
+        }
+
+        html.r34-forum-view #content div.quote {
+            box-sizing:border-box !important;
+            margin:12px 0 !important;
+            padding:12px 14px !important;
+            background:#151b17 !important;
+            color:#aeb7b0 !important;
+            border:1px solid #245a34 !important;
+            border-left:3px solid #22c55e !important;
+            border-radius:10px !important;
+            box-shadow:
+            0 0 10px rgba(34,197,94,.08),
+                inset 0 0 12px rgba(34,197,94,.025) !important;
+                font-size:14px !important;
+                line-height:1.5 !important;
+        }
+
+        html.r34-forum-view #content div.quote a {
+            color:#86efac !important;
+        }
+
+        html.r34-forum-view #content div.quote a:hover {
+            color:#bbf7d0 !important;
+        }
+
+        /* Edit / Reply blocks */
+        html.r34-forum-view #content #edit,
+        html.r34-forum-view #content #edit-form,
+        html.r34-forum-view #content .edit,
+        html.r34-forum-view #content .reply,
+        html.r34-forum-view #content #reply {
+            box-sizing:border-box !important;
+            margin:16px 0 !important;
+            padding:16px !important;
+            background:#111419 !important;
+            color:#c9cdd3 !important;
+            border:1px solid #245a34 !important;
+            border-radius:14px !important;
+            box-shadow:0 4px 18px rgba(0,0,0,.18) !important;
+        }
+
+        /* Text fields */
+        html.r34-forum-view #content #edit input[type="text"],
+        html.r34-forum-view #content #edit textarea,
+        html.r34-forum-view #content #edit-form input[type="text"],
+        html.r34-forum-view #content #edit-form textarea,
+        html.r34-forum-view #content .reply input[type="text"],
+        html.r34-forum-view #content .reply textarea,
+        html.r34-forum-view #content #reply input[type="text"],
+        html.r34-forum-view #content #reply textarea {
+            box-sizing:border-box !important;
+            width:100% !important;
+            min-height:42px !important;
+            padding:10px 13px !important;
+            margin:6px 0 12px !important;
+            background:#15181d !important;
+            color:#dce2e8 !important;
+            border:1px solid #303640 !important;
+            border-radius:9px !important;
+            outline:none !important;
+            font-family:"Inter",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif !important;
+            font-size:14px !important;
+            line-height:1.45 !important;
+            transition:border-color .15s ease,box-shadow .15s ease,background .15s ease !important;
+        }
+
+        html.r34-forum-view #content #edit textarea,
+        html.r34-forum-view #content #edit-form textarea,
+        html.r34-forum-view #content .reply textarea,
+        html.r34-forum-view #content #reply textarea {
+            min-height:140px !important;
+            resize:vertical !important;
+        }
+
+        html.r34-forum-view #content #edit input[type="text"]:focus,
+        html.r34-forum-view #content #edit textarea:focus,
+        html.r34-forum-view #content #edit-form input[type="text"]:focus,
+        html.r34-forum-view #content #edit-form textarea:focus,
+        html.r34-forum-view #content .reply input[type="text"]:focus,
+        html.r34-forum-view #content .reply textarea:focus,
+        html.r34-forum-view #content #reply input[type="text"]:focus,
+        html.r34-forum-view #content #reply textarea:focus {
+            background:#181c22 !important;
+            border-color:#22c55e !important;
+            box-shadow:0 0 0 3px rgba(34,197,94,.12) !important;
+        }
+
+        /* Buttons */
+        html.r34-forum-view #content #edit input[type="submit"],
+        html.r34-forum-view #content #edit-form input[type="submit"],
+        html.r34-forum-view #content .reply input[type="submit"],
+        html.r34-forum-view #content #reply input[type="submit"] {
+            display:inline-flex !important;
+            align-items:center !important;
+            justify-content:center !important;
+            min-width:140px !important;
+            height:44px !important;
+            padding:0 22px !important;
+            margin-top:8px !important;
+            background:linear-gradient(135deg,#22c55e,#16a34a,#15803d) !important;
+            color:#fff !important;
+            border:1px solid #23743c !important;
+            border-radius:9999px !important;
+            font-family:"Inter",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif !important;
+            font-size:14px !important;
+            font-weight:600 !important;
+            line-height:1 !important;
+            cursor:pointer !important;
+            appearance:none !important;
+            -webkit-appearance:none !important;
+            box-shadow:0 5px 18px rgba(22,163,74,.24) !important;
+            transition:filter .15s ease,transform .15s ease,box-shadow .15s ease !important;
+        }
+
+        html.r34-forum-view #content #edit input[type="submit"]:hover,
+        html.r34-forum-view #content #edit-form input[type="submit"]:hover,
+        html.r34-forum-view #content .reply input[type="submit"]:hover,
+        html.r34-forum-view #content #reply input[type="submit"]:hover {
+            filter:brightness(1.08) !important;
+            transform:translateY(-1px) !important;
+            box-shadow:0 8px 24px rgba(22,163,74,.34) !important;
+        }
+
+        html.r34-forum-view #content form[action*="forum"][action*="action=edit_post"] {
+            box-sizing:border-box !important;
+            width:100% !important;
+            margin:16px 0 !important;
+            padding:16px !important;
+            background:#111419 !important;
+            color:#c9cdd3 !important;
+            border:1px solid #245a34 !important;
+            border-radius:14px !important;
+            box-shadow:0 4px 18px rgba(0,0,0,.18) !important;
+        }
+
+        html.r34-forum-view #content form[action*="forum"][action*="action=edit_post"] table {
+            width:100% !important;
+            border-collapse:separate !important;
+            border-spacing:0 !important;
+            background:transparent !important;
+        }
+
+        html.r34-forum-view #content form[action*="forum"][action*="action=edit_post"] td {
+            padding:4px 0 !important;
+            border:none !important;
+            background:transparent !important;
+        }
+
+        /* Заголовок */
+        html.r34-forum-view #content form[action*="forum"][action*="action=edit_post"] input[name="title"] {
+            box-sizing:border-box !important;
+            width:100% !important;
+            height:42px !important;
+            padding:0 13px !important;
+            background:#15181d !important;
+            color:#dce2e8 !important;
+            border:1px solid #303640 !important;
+            border-radius:9px !important;
+            outline:none !important;
+            font-family:"Inter",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif !important;
+            font-size:14px !important;
+        }
+
+        html.r34-forum-view #content form[action*="forum"][action*="action=edit_post"] input[name="title"]:focus {
+            background:#181c22 !important;
+            border-color:#22c55e !important;
+            box-shadow:0 0 0 3px rgba(34,197,94,.12) !important;
+        }
+
+        /* Текст поста */
+        html.r34-forum-view #content form[action*="forum"][action*="action=edit_post"] textarea[name="post"] {
+            display:block !important;
+            box-sizing:border-box !important;
+            width:100% !important;
+            min-height:150px !important;
+            padding:11px 13px !important;
+            margin:4px 0 !important;
+            background:#15181d !important;
+            color:#dce2e8 !important;
+            border:1px solid #303640 !important;
+            border-radius:9px !important;
+            outline:none !important;
+            font-family:"Inter",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif !important;
+            font-size:14px !important;
+            line-height:1.5 !important;
+            resize:vertical !important;
+        }
+
+        html.r34-forum-view #content form[action*="forum"][action*="action=edit_post"] textarea[name="post"]:focus {
+            background:#181c22 !important;
+            border-color:#22c55e !important;
+            box-shadow:0 0 0 3px rgba(34,197,94,.12) !important;
+        }
+
+        /* Edit */
+        html.r34-forum-view #content form[action*="forum"][action*="action=edit_post"] input[type="submit"] {
+            display:inline-flex !important;
+            align-items:center !important;
+            justify-content:center !important;
+            min-width:140px !important;
+            height:44px !important;
+            padding:0 22px !important;
+            margin-top:6px !important;
+            background:linear-gradient(135deg,#22c55e,#16a34a,#15803d) !important;
+            color:#fff !important;
+            border:1px solid #23743c !important;
+            border-radius:9999px !important;
+            font-family:"Inter",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif !important;
+            font-size:14px !important;
+            font-weight:600 !important;
+            cursor:pointer !important;
+            appearance:none !important;
+            -webkit-appearance:none !important;
+            box-shadow:0 5px 18px rgba(22,163,74,.24) !important;
+            transition:filter .15s ease,transform .15s ease,box-shadow .15s ease !important;
+        }
+
+        html.r34-forum-view #content form[action*="forum"][action*="action=edit_post"] input[type="submit"]:hover {
+            filter:brightness(1.08) !important;
+            transform:translateY(-1px) !important;
+            box-shadow:0 8px 24px rgba(22,163,74,.34) !important;
+        }
+
+        html.r34-forum-view #paginator {
+            display:flex !important;
+            align-items:center !important;
+            justify-content:center !important;
+            flex-wrap:wrap !important;
+            gap:6px !important;
+            width:fit-content !important;
+            max-width:96% !important;
+            box-sizing:border-box !important;
+            margin:28px auto !important;
+            padding:6px !important;
+            background:#111419 !important;
+            border:1px solid #245a34 !important;
+            border-radius:12px !important;
+            box-shadow:0 0 16px rgba(34,197,94,.12) !important;
+            color:#9da5af !important;
+        }
+
+        html.r34-forum-view #paginator a {
+            display:inline-flex !important;
+            align-items:center !important;
+            justify-content:center !important;
+            box-sizing:border-box !important;
+            min-width:38px !important;
+            height:38px !important;
+            padding:0 11px !important;
+            margin:0 !important;
+            background:#181c22 !important;
+            color:#9da5af !important;
+            border:1px solid #292f37 !important;
+            border-radius:9px !important;
+            font-size:14px !important;
+            font-weight:600 !important;
+            line-height:1 !important;
+            text-decoration:none !important;
+            transition:
+            background .15s ease,
+            color .15s ease,
+            border-color .15s ease,
+            box-shadow .15s ease,
+            transform .15s ease !important;
+        }
+
+        html.r34-forum-view #paginator a:hover {
+            background:#1b2820 !important;
+            color:#e3e8ed !important;
+            border-color:#357546 !important;
+            box-shadow:0 0 10px rgba(34,197,94,.14) !important;
+            transform:translateY(-1px) !important;
+        }
+
+        html.r34-forum-view #paginator b,
+        html.r34-forum-view #paginator strong,
+        html.r34-forum-view #paginator span.current,
+        html.r34-forum-view #paginator span.active,
+        html.r34-forum-view #paginator span.selected,
+        html.r34-forum-view #paginator .current,
+        html.r34-forum-view #paginator .active,
+        html.r34-forum-view #paginator .selected {
+            display:inline-flex !important;
+            align-items:center !important;
+            justify-content:center !important;
+            box-sizing:border-box !important;
+            min-width:38px !important;
+            height:38px !important;
+            padding:0 11px !important;
+            margin:0 !important;
+            background:linear-gradient(135deg,#22c55e,#16a34a) !important;
+            color:#fff !important;
+            border:1px solid #22c55e !important;
+            border-radius:9px !important;
+            font-size:14px !important;
+            font-weight:700 !important;
+            line-height:1 !important;
+            box-shadow:
+            0 0 10px rgba(34,197,94,.24),
+                0 0 22px rgba(34,197,94,.12) !important;
                 opacity:1 !important;
         }
 

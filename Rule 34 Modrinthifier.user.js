@@ -9,6 +9,8 @@
 // @match        https://www.rule34.xxx/*
 // @grant        GM_addStyle
 // @run-at       document-start
+// @updateURL    https://raw.githubusercontent.com/RukoBlood/Rule34-Modrinthifier/refs/heads/main/Rule%2034%20Modrinthifier.user.js
+// @downloadURL  https://raw.githubusercontent.com/RukoBlood/Rule34-Modrinthifier/refs/heads/main/Rule%2034%20Modrinthifier.user.js
 // ==/UserScript==
 
 (function () {
@@ -3748,4 +3750,3 @@
     }
 
 })();
-/*shit*/

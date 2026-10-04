@@ -2,7 +2,7 @@
 // ==UserScript==
 // @name         Rule34.xxx — Modern UI
 // @namespace    https://rule34.xxx/
-// @version      3.9.5
+// @version      4.0.0
 // @description  Modernize Rule34.xxx interface
 // @author       RukoBlood
 // @match        https://rule34.xxx/*
@@ -42,6 +42,8 @@
 
     const isAccountProfilePage = page === 'account' && section === 'profile';
 
+    const isIcamePage = page === 'icame';
+
     const html = document.documentElement;
 
     html.classList.add('r34-modern');
@@ -69,6 +71,9 @@
 
     if (isAccountProfilePage)
         html.classList.add('r34-account-profile');
+
+    if (isIcamePage)
+        html.classList.add('r34-icame');
 
     /* =========================================================
        LOAD INTER
@@ -3141,15 +3146,24 @@
                 opacity:1 !important;
         }
 
+        /* Forum — vertical separators */
+        html.r34-forum-list #content table th,
+        html.r34-forum-list #content table td {
+            border-right:1px solid #245a34 !important;
+        }
+
+        html.r34-forum-list #content table th:last-child,
+        html.r34-forum-list #content table td:last-child {
+            border-right:none !important;
+        }
+
         /*=====================================================
          PROFILE PAGE
          ===================================================== */
 
-        /* ACCOUNT PROFILE */
-
         /* PROFILE TABLES */
         html.r34-account-profile #content table {
-            width:100% !important;
+            width:55% !important;
             box-sizing:border-box !important;
 
             border-collapse:separate !important;
@@ -3244,6 +3258,122 @@
             0 0 7px rgba(251,146,60,.55),
                 0 0 16px rgba(251,146,60,.30),
                 0 0 26px rgba(251,146,60,.14) !important;
+        }
+
+        /* My Profile — vertical separators */
+        html.r34-account-profile #content table th,
+        html.r34-account-profile #content table td {
+            border-right:1px solid #245a34 !important;
+        }
+
+        html.r34-account-profile #content table th:last-child,
+        html.r34-account-profile #content table td:last-child {
+            border-right:none !important;
+        }
+
+        /*=====================================================
+         ICAME PAGE
+         ===================================================== */
+
+        html.r34-icame table.highlightable {
+            width:100% !important;
+            box-sizing:border-box !important;
+            border-collapse:separate !important;
+            border-spacing:0 !important;
+            overflow:hidden !important;
+
+            background:#111419 !important;
+            color:#c9cdd3 !important;
+
+            border:1px solid #245a34 !important;
+            border-radius:14px !important;
+
+            box-shadow:0 4px 18px rgba(0,0,0,.18) !important;
+        }
+
+        html.r34-icame table.highlightable th {
+            padding:13px 15px !important;
+            background:#15181d !important;
+            color:#e0e4e9 !important;
+
+            border:none !important;
+            border-bottom:1px solid #245a34 !important;
+
+            font-size:14px !important;
+            font-weight:700 !important;
+            text-align:left !important;
+        }
+
+        html.r34-icame table.highlightable td {
+            padding:11px 15px !important;
+            background:#111419 !important;
+            color:#c9cdd3 !important;
+
+            border:none !important;
+            border-bottom:1px solid #245a34 !important;
+
+            font-size:14px !important;
+            vertical-align:middle !important;
+
+            transition:background .15s ease !important;
+        }
+
+        html.r34-icame table.highlightable tr:last-child td {
+            border-bottom:none !important;
+        }
+
+        html.r34-icame table.highlightable tbody tr:hover td {
+            background:#151b17 !important;
+        }
+
+        /* Place */
+        html.r34-icame table.highlightable th:first-child,
+        html.r34-icame table.highlightable td:first-child {
+            width:80px !important;
+            text-align:center !important;
+            color:#8f979f !important;
+            font-weight:600 !important;
+        }
+
+        /* Character name */
+        html.r34-icame table.highlightable th:nth-child(2),
+                html.r34-icame table.highlightable td:nth-child(2) {
+                    text-align:left !important;
+                }
+
+                /* iCame count */
+                html.r34-icame table.highlightable th:nth-child(3),
+                html.r34-icame table.highlightable td:nth-child(3) {
+                    width:180px !important;
+                    text-align:right !important;
+                    font-variant-numeric:tabular-nums !important;
+                }
+
+                /* Character links */
+                html.r34-icame table.highlightable td a {
+                    color:#aeb4bd !important;
+                    text-decoration:none !important;
+                    font-weight:500 !important;
+                }
+
+                html.r34-icame table.highlightable td a:hover {
+                    color:#86efac !important;
+                    text-shadow:0 0 10px rgba(34,197,94,.20) !important;
+                }
+
+        html.r34-icame table.highlightable {
+            width:50% !important;
+            margin:0 !important;
+        }
+
+        html.r34-icame table.highlightable th,
+        html.r34-icame table.highlightable td {
+            border-right:1px solid #245a34 !important;
+        }
+
+        html.r34-icame table.highlightable th:last-child,
+        html.r34-icame table.highlightable td:last-child {
+            border-right:none !important;
         }
 
     }

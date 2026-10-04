@@ -1,5 +1,9 @@
 # Changelogs
 
+## Beta 6 (3.8.9 Internal) - Moderate Update 1
+- Forum page redesigned
+- Profile page redesigned
+
 ## Beta 5 (3.8.1 Internal) - Minor update 3
 - Redesigned post upload page
   - Added new button style

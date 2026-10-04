@@ -2,7 +2,7 @@
 // ==UserScript==
 // @name         Rule34.xxx — Modern UI
 // @namespace    https://rule34.xxx/
-// @version      4.2.0
+// @version      4.2.3
 // @description  Modernize Rule34.xxx interface
 // @author       RukoBlood
 // @match        https://rule34.xxx/*
@@ -56,9 +56,13 @@
 
     const isArtistCreatePage = page === 'artist' && section === 'create';
 
+    const isArtistUpdatePage = page === 'artist' && section === 'update';
+
     const isAliasListPage = page === 'alias' && section === 'list';
 
     const isAliasAddPage = page === 'alias' && section === 'add';
+
+    const isCommentListPage = page === 'comment' && section === 'list';
 
     const html = document.documentElement;
 
@@ -109,11 +113,17 @@
     if (isArtistCreatePage)
         html.classList.add('r34-artist-create');
 
+    if (isArtistUpdatePage)
+        html.classList.add('r34-artist-update');
+
     if (isAliasListPage)
         html.classList.add('r34-alias-list');
 
     if (isAliasAddPage)
         html.classList.add('r34-alias-add');
+
+    if (isCommentListPage)
+        html.classList.add('r34-comment-list');
 
     /* =========================================================
        LOAD INTER
@@ -4484,7 +4494,8 @@
          *  ARTIST CREATE
          *  ========================= */
 
-        html.r34-artist-create #content > h3 {
+        html.r34-artist-create #content > h3,
+        html.r34-artist-update #content > h3 {
             margin:0 0 18px 0 !important;
 
             color:#e3e8ed !important;
@@ -4492,11 +4503,13 @@
             font-weight:700 !important;
         }
 
-        html.r34-artist-create #content form {
+        html.r34-artist-create #content form,
+        html.r34-artist-update #content form {
             width:100% !important;
         }
 
-        html.r34-artist-create #content table.form {
+        html.r34-artist-create #content table.form,
+        html.r34-artist-update #content table.form {
             width:100% !important;
             box-sizing:border-box !important;
 
@@ -4515,7 +4528,8 @@
 
         /* LABEL COLUMN */
 
-        html.r34-artist-create #content table.form th {
+        html.r34-artist-create #content table.form th,
+        html.r34-artist-update #content table.form th {
             width:20% !important;
             box-sizing:border-box !important;
 
@@ -4537,7 +4551,8 @@
 
         /* INPUT COLUMN */
 
-        html.r34-artist-create #content table.form td {
+        html.r34-artist-create #content table.form td,
+        html.r34-artist-update #content table.form td {
             box-sizing:border-box !important;
 
             padding:16px !important;
@@ -4552,14 +4567,18 @@
         }
 
         html.r34-artist-create #content table.form tr:last-child th,
-        html.r34-artist-create #content table.form tr:last-child td {
+        html.r34-artist-update #content table.form tr:last-child th,
+        html.r34-artist-create #content table.form tr:last-child td,
+        html.r34-artist-update #content table.form tr:last-child td {
             border-bottom:none !important;
         }
 
         /* INPUTS */
 
         html.r34-artist-create #content input[type="text"],
-        html.r34-artist-create #content textarea {
+        html.r34-artist-update #content input[type="text"],
+        html.r34-artist-create #content textarea,
+        html.r34-artist-update #content textarea {
             display:block !important;
 
             box-sizing:border-box !important;
@@ -4587,8 +4606,11 @@
         /* SINGLE-LINE FIELDS */
 
         html.r34-artist-create #artist_name,
+        html.r34-artist-update #artist_name,
         html.r34-artist-create #artist_alias_names,
-        html.r34-artist-create #artist_member_names {
+        html.r34-artist-update #artist_alias_names,
+        html.r34-artist-create #artist_member_names,
+        html.r34-artist-update #artist_member_names {
             height:40px !important;
             padding:0 12px !important;
         }
@@ -4596,7 +4618,9 @@
         /* URLS / NOTES */
 
         html.r34-artist-create #artist_urls,
-        html.r34-artist-create #artist_notes {
+        html.r34-artist-update #artist_urls,
+        html.r34-artist-create #artist_notes,
+        html.r34-artist-update #artist_notes {
             min-height:150px !important;
             padding:10px 12px !important;
 
@@ -4606,7 +4630,9 @@
         /* FOCUS */
 
         html.r34-artist-create #content input[type="text"]:focus,
-        html.r34-artist-create #content textarea:focus {
+        html.r34-artist-update #content input[type="text"]:focus,
+        html.r34-artist-create #content textarea:focus,
+        html.r34-artist-update #content textarea:focus {
             background:#1b2026 !important;
             border-color:#357546 !important;
 
@@ -4617,7 +4643,8 @@
 
         /* BUTTON ROW */
 
-        html.r34-artist-create #content table.form tr:last-child td {
+        html.r34-artist-create #content table.form tr:last-child td,
+        html.r34-artist-update #content table.form tr:last-child td {
             padding:16px !important;
 
             background:#111419 !important;
@@ -4626,7 +4653,9 @@
         /* BUTTONS */
 
         html.r34-artist-create #content input[type="submit"],
-        html.r34-artist-create #content input[type="button"] {
+        html.r34-artist-update #content input[type="submit"],
+        html.r34-artist-create #content input[type="button"],
+        html.r34-artist-update #content input[type="button"] {
             box-sizing:border-box !important;
 
             height:38px !important;
@@ -4650,7 +4679,8 @@
 
         /* SAVE */
 
-        html.r34-artist-create #content input[type="submit"] {
+        html.r34-artist-create #content input[type="submit"],
+        html.r34-artist-update #content input[type="submit"] {
             background:linear-gradient(135deg,#22c55e,#16a34a) !important;
             color:#fff !important;
 
@@ -4661,7 +4691,8 @@
                 0 0 20px rgba(34,197,94,.08) !important;
         }
 
-        html.r34-artist-create #content input[type="submit"]:hover {
+        html.r34-artist-create #content input[type="submit"]:hover,
+        html.r34-artist-update #content input[type="submit"]:hover {
             transform:translateY(-1px) !important;
 
             box-shadow:
@@ -4671,14 +4702,16 @@
 
         /* CANCEL */
 
-        html.r34-artist-create #content input[type="button"] {
+        html.r34-artist-create #content input[type="button"],
+        html.r34-artist-update #content input[type="button"] {
             background:#181c22 !important;
             color:#aeb4bd !important;
 
             border:1px solid #303740 !important;
         }
 
-        html.r34-artist-create #content input[type="button"]:hover {
+        html.r34-artist-create #content input[type="button"]:hover,
+        html.r34-artist-update #content input[type="button"]:hover {
             background:#1b2026 !important;
             color:#e3e8ed !important;
             border-color:#3a414a !important;
@@ -5176,6 +5209,280 @@
             background:#1b2026 !important;
             color:#e3e8ed !important;
             border-color:#3a414a !important;
+        }
+
+        /* =========================
+         *  COMMENT LIST
+         *  ========================= */
+
+        html.r34-comment-list #comment-list {
+            width:100% !important;
+        }
+
+        /* POST CARD */
+
+        html.r34-comment-list #comment-list > .post[id^="p"] {
+            box-sizing:border-box !important;
+
+            width:100% !important;
+            margin:0 0 22px 0 !important;
+            padding:14px !important;
+
+            background:#111419 !important;
+
+            border:1px solid #245a34 !important;
+            border-radius:14px !important;
+
+            box-shadow:0 4px 18px rgba(0,0,0,.18) !important;
+
+            overflow:hidden !important;
+        }
+
+        /* POST LAYOUT */
+
+        html.r34-comment-list #comment-list > .post[id^="p"] > .col1 {
+            margin-right:14px !important;
+        }
+
+        html.r34-comment-list #comment-list > .post[id^="p"] > .col1 img.preview {
+            display:block !important;
+
+            border-radius:10px !important;
+        }
+
+        /* POST HEADER */
+
+        html.r34-comment-list #comment-list > .post[id^="p"] .header {
+            color:#c9cdd3 !important;
+
+            font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif !important;
+            font-size:13px !important;
+        }
+
+        html.r34-comment-list #comment-list > .post[id^="p"] .info {
+            margin-right:12px !important;
+        }
+
+        html.r34-comment-list #comment-list > .post[id^="p"] .info strong {
+            color:#e3e8ed !important;
+            font-weight:700 !important;
+        }
+
+        /* LINKS */
+
+        html.r34-comment-list #comment-list a {
+            color:#86efac !important;
+            text-decoration:none !important;
+        }
+
+        html.r34-comment-list #comment-list a:hover {
+            color:#bbf7d0 !important;
+            text-shadow:0 0 7px rgba(34,197,94,.20) !important;
+        }
+
+        /* TAGS */
+
+        html.r34-comment-list #comment-list > .post[id^="p"] .tags {
+            box-sizing:border-box !important;
+
+            width:100% !important;
+            max-width:none !important;
+
+            margin-top:10px !important;
+            padding:10px 12px !important;
+
+            background:#0d1110 !important;
+
+            border:1px solid #1e482b !important;
+            border-radius:9px !important;
+
+            color:#9da5af !important;
+
+            line-height:1.7 !important;
+        }
+
+        html.r34-comment-list #comment-list > .post[id^="p"] .tags strong {
+            color:#c9cdd3 !important;
+        }
+
+        /* COMMENT SECTION */
+
+        html.r34-comment-list #comment-list > .post[id^="p"] > .response-list {
+            clear:both !important;
+
+            margin-top:14px !important;
+            padding-top:12px !important;
+
+            border-top:1px solid #245a34 !important;
+        }
+
+        /* INDIVIDUAL COMMENT */
+
+        html.r34-comment-list #comment-list > .post[id^="p"] .response-list > .post[id^="c"] {
+            box-sizing:border-box !important;
+
+            display:flex !important;
+            gap:14px !important;
+
+            width:100% !important;
+
+            margin:0 0 8px 0 !important;
+            padding:11px 12px !important;
+
+            background:#181c22 !important;
+
+            border:1px solid #292f37 !important;
+            border-radius:9px !important;
+
+            color:#c9cdd3 !important;
+        }
+
+        /* COMMENT AUTHOR */
+
+        html.r34-comment-list #comment-list .post[id^="c"] .author {
+            flex:0 0 150px !important;
+
+            box-sizing:border-box !important;
+        }
+
+        html.r34-comment-list #comment-list .post[id^="c"] .author h6 {
+            margin:0 0 3px 0 !important;
+
+            color:#e3e8ed !important;
+
+            font-size:13px !important;
+            font-weight:700 !important;
+        }
+
+        html.r34-comment-list #comment-list .post[id^="c"] .date {
+            color:#6f7781 !important;
+
+            font-size:11px !important;
+            line-height:1.4 !important;
+        }
+
+        /* COMMENT CONTENT */
+
+        html.r34-comment-list #comment-list .post[id^="c"] .content {
+            flex:1 1 auto !important;
+
+            min-width:0 !important;
+        }
+
+        html.r34-comment-list #comment-list .post[id^="c"] .body {
+            color:#c9cdd3 !important;
+
+            font-size:14px !important;
+            line-height:1.55 !important;
+
+            overflow-wrap:anywhere !important;
+        }
+
+        /* COMMENT FOOTER */
+
+        html.r34-comment-list #comment-list .post[id^="c"] .footer {
+            margin-top:7px !important;
+
+            color:#6f7781 !important;
+
+            font-size:11px !important;
+        }
+
+        html.r34-comment-list #comment-list .post[id^="c"] .footer a {
+            color:#6f7781 !important;
+
+            text-shadow:none !important;
+        }
+
+        html.r34-comment-list #comment-list .post[id^="c"] .footer a:hover {
+            color:#86efac !important;
+        }
+
+        /* ALREADY REPORTED */
+
+        html.r34-comment-list #comment-list .post[id^="c"] .footer b {
+            color:#666d75 !important;
+            font-weight:600 !important;
+        }
+
+        /* HIDDEN COMMENTS */
+
+        html.r34-comment-list #comment-list > .content {
+            margin:10px 0 !important;
+
+            color:#6f7781 !important;
+
+            font-size:12px !important;
+        }
+
+        /* PAGINATOR */
+
+        html.r34-comment-list #paginator {
+            display:flex !important;
+
+            align-items:center !important;
+            justify-content:center !important;
+            flex-wrap:wrap !important;
+
+            gap:6px !important;
+
+            width:fit-content !important;
+            max-width:96% !important;
+
+            box-sizing:border-box !important;
+
+            margin:28px auto !important;
+            padding:6px !important;
+
+            background:transparent !important;
+
+            border:none !important;
+            border-radius:12px !important;
+
+            box-shadow:none !important;
+
+            color:#9da5af !important;
+        }
+
+        html.r34-comment-list #paginator a {
+            display:inline-flex !important;
+
+            align-items:center !important;
+            justify-content:center !important;
+
+            box-sizing:border-box !important;
+
+            min-width:38px !important;
+            height:38px !important;
+
+            padding:0 13px !important;
+            margin:0 !important;
+
+            background:#181c22 !important;
+
+            color:#9da5af !important;
+
+            border:1px solid #292f37 !important;
+            border-radius:9px !important;
+
+            font-size:14px !important;
+            font-weight:600 !important;
+
+            line-height:1 !important;
+
+            text-decoration:none !important;
+        }
+
+        html.r34-comment-list #paginator a:hover {
+            background:#1b2820 !important;
+
+            color:#e3e8ed !important;
+
+            border-color:#357546 !important;
+
+            box-shadow:0 0 10px rgba(34,197,94,.14) !important;
+
+            transform:translateY(-1px) !important;
         }
     }
 

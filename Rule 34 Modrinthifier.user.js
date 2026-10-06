@@ -2,7 +2,7 @@
 // ==UserScript==
 // @name         Rule34.xxx — Modern UI
 // @namespace    https://rule34.xxx/
-// @version      4.2.3
+// @version      4.2.9
 // @description  Modernize Rule34.xxx interface
 // @author       RukoBlood
 // @match        https://rule34.xxx/*
@@ -63,6 +63,18 @@
     const isAliasAddPage = page === 'alias' && section === 'add';
 
     const isCommentListPage = page === 'comment' && section === 'list';
+
+    const isCommentUserPage = page === 'comment' && section === 'user';
+
+    const isWikiListPage = page === 'wiki' && section === 'list';
+
+    const isWikiCreatePage = page === 'wiki' && section === 'create';
+
+    const isWikiViewPage = page === 'wiki' && section === 'view';
+
+    const isWikiEditPage = page === 'wiki' && section === 'edit';
+
+    const isWikiHistoryPage = page === 'wiki' && section === 'history';
 
     const html = document.documentElement;
 
@@ -125,6 +137,24 @@
     if (isCommentListPage)
         html.classList.add('r34-comment-list');
 
+    if (isCommentUserPage)
+        html.classList.add('r34-comment-user');
+
+    if (isWikiListPage)
+        html.classList.add('r34-wiki-list');
+
+    if (isWikiCreatePage)
+        html.classList.add('r34-wiki-create');
+
+    if (isWikiViewPage)
+        html.classList.add('r34-wiki-view');
+
+    if (isWikiEditPage)
+        html.classList.add('r34-wiki-edit');
+
+    if (isWikiHistoryPage)
+        html.classList.add('r34-wiki-history');
+
     /* =========================================================
        LOAD INTER
        ========================================================= */
@@ -136,25 +166,17 @@
             return;
         }
 
-        if (
-            document.getElementById(
-                'r34-modern-inter'
-            )
-        ) {
+        if (document.getElementById('r34-modern-inter')) {
             return;
         }
 
-        const link =
-            document.createElement('link');
+        const link = document.createElement('link');
 
-        link.id =
-            'r34-modern-inter';
+        link.id = 'r34-modern-inter';
 
-        link.rel =
-            'stylesheet';
+        link.rel = 'stylesheet';
 
-        link.href =
-            'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap';
+        link.href = 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap';
 
         document.head.appendChild(link);
     }
@@ -2748,6 +2770,28 @@
             border-bottom:none !important;
         }
 
+        /* FORUM QUOTES */
+
+        html.r34-forum-list .quote {
+            box-sizing:border-box !important;
+            margin:10px 0 !important;
+            padding:10px 12px !important;
+
+            background:#0d1110 !important;
+
+            border:1px solid #245a34 !important;
+            border-left:3px solid #22c55e !important;
+            border-radius:9px !important;
+
+            color:#9da5af !important;
+
+            font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif !important;
+            font-size:13px !important;
+            line-height:1.5 !important;
+
+            box-shadow:0 0 10px rgba(34,197,94,.06) !important;
+        }
+
 
         /* FORUM PAGINATOR */
         html.r34-forum-list #paginator {
@@ -5212,206 +5256,173 @@
         }
 
         /* =========================
-         *  COMMENT LIST
+         *  COMMENT LIST / COMMENT USER
          *  ========================= */
 
-        html.r34-comment-list #comment-list {
+        html:is(.r34-comment-list, .r34-comment-user) #comment-list {
             width:100% !important;
         }
 
         /* POST CARD */
 
-        html.r34-comment-list #comment-list > .post[id^="p"] {
+        html:is(.r34-comment-list, .r34-comment-user) #comment-list > .post[id^="p"] {
             box-sizing:border-box !important;
-
             width:100% !important;
             margin:0 0 22px 0 !important;
             padding:14px !important;
-
             background:#111419 !important;
-
             border:1px solid #245a34 !important;
             border-radius:14px !important;
-
             box-shadow:0 4px 18px rgba(0,0,0,.18) !important;
-
             overflow:hidden !important;
         }
 
         /* POST LAYOUT */
 
-        html.r34-comment-list #comment-list > .post[id^="p"] > .col1 {
+        html:is(.r34-comment-list, .r34-comment-user) #comment-list > .post[id^="p"] > .col1 {
             margin-right:14px !important;
         }
 
-        html.r34-comment-list #comment-list > .post[id^="p"] > .col1 img.preview {
+        html:is(.r34-comment-list, .r34-comment-user) #comment-list > .post[id^="p"] > .col1 img.preview {
             display:block !important;
-
             border-radius:10px !important;
         }
 
         /* POST HEADER */
 
-        html.r34-comment-list #comment-list > .post[id^="p"] .header {
+        html:is(.r34-comment-list, .r34-comment-user) #comment-list > .post[id^="p"] .header {
             color:#c9cdd3 !important;
-
             font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif !important;
             font-size:13px !important;
         }
 
-        html.r34-comment-list #comment-list > .post[id^="p"] .info {
+        html:is(.r34-comment-list, .r34-comment-user) #comment-list > .post[id^="p"] .info {
             margin-right:12px !important;
         }
 
-        html.r34-comment-list #comment-list > .post[id^="p"] .info strong {
+        html:is(.r34-comment-list, .r34-comment-user) #comment-list > .post[id^="p"] .info strong {
             color:#e3e8ed !important;
             font-weight:700 !important;
         }
 
         /* LINKS */
 
-        html.r34-comment-list #comment-list a {
+        html:is(.r34-comment-list, .r34-comment-user) #comment-list a {
             color:#86efac !important;
             text-decoration:none !important;
         }
 
-        html.r34-comment-list #comment-list a:hover {
+        html:is(.r34-comment-list, .r34-comment-user) #comment-list a:hover {
             color:#bbf7d0 !important;
             text-shadow:0 0 7px rgba(34,197,94,.20) !important;
         }
 
         /* TAGS */
 
-        html.r34-comment-list #comment-list > .post[id^="p"] .tags {
+        html:is(.r34-comment-list, .r34-comment-user) #comment-list > .post[id^="p"] .tags {
             box-sizing:border-box !important;
-
             width:100% !important;
             max-width:none !important;
-
             margin-top:10px !important;
             padding:10px 12px !important;
-
             background:#0d1110 !important;
-
             border:1px solid #1e482b !important;
             border-radius:9px !important;
-
             color:#9da5af !important;
-
             line-height:1.7 !important;
         }
 
-        html.r34-comment-list #comment-list > .post[id^="p"] .tags strong {
+        html:is(.r34-comment-list, .r34-comment-user) #comment-list > .post[id^="p"] .tags strong {
             color:#c9cdd3 !important;
         }
 
         /* COMMENT SECTION */
 
-        html.r34-comment-list #comment-list > .post[id^="p"] > .response-list {
+        html:is(.r34-comment-list, .r34-comment-user) #comment-list > .post[id^="p"] > .response-list {
             clear:both !important;
-
             margin-top:14px !important;
             padding-top:12px !important;
-
             border-top:1px solid #245a34 !important;
         }
 
         /* INDIVIDUAL COMMENT */
 
-        html.r34-comment-list #comment-list > .post[id^="p"] .response-list > .post[id^="c"] {
+        html:is(.r34-comment-list, .r34-comment-user) #comment-list > .post[id^="p"] .response-list > .post[id^="c"] {
             box-sizing:border-box !important;
-
             display:flex !important;
             gap:14px !important;
-
             width:100% !important;
-
             margin:0 0 8px 0 !important;
             padding:11px 12px !important;
-
             background:#181c22 !important;
-
             border:1px solid #292f37 !important;
             border-radius:9px !important;
-
             color:#c9cdd3 !important;
         }
 
         /* COMMENT AUTHOR */
 
-        html.r34-comment-list #comment-list .post[id^="c"] .author {
+        html:is(.r34-comment-list, .r34-comment-user) #comment-list .post[id^="c"] .author {
             flex:0 0 150px !important;
-
             box-sizing:border-box !important;
         }
 
-        html.r34-comment-list #comment-list .post[id^="c"] .author h6 {
+        html:is(.r34-comment-list, .r34-comment-user) #comment-list .post[id^="c"] .author h6 {
             margin:0 0 3px 0 !important;
-
             color:#e3e8ed !important;
-
             font-size:13px !important;
             font-weight:700 !important;
         }
 
-        html.r34-comment-list #comment-list .post[id^="c"] .date {
+        html:is(.r34-comment-list, .r34-comment-user) #comment-list .post[id^="c"] .date {
             color:#6f7781 !important;
-
             font-size:11px !important;
             line-height:1.4 !important;
         }
 
         /* COMMENT CONTENT */
 
-        html.r34-comment-list #comment-list .post[id^="c"] .content {
+        html:is(.r34-comment-list, .r34-comment-user) #comment-list .post[id^="c"] .content {
             flex:1 1 auto !important;
-
             min-width:0 !important;
         }
 
-        html.r34-comment-list #comment-list .post[id^="c"] .body {
+        html:is(.r34-comment-list, .r34-comment-user) #comment-list .post[id^="c"] .body {
             color:#c9cdd3 !important;
-
             font-size:14px !important;
             line-height:1.55 !important;
-
             overflow-wrap:anywhere !important;
         }
 
         /* COMMENT FOOTER */
 
-        html.r34-comment-list #comment-list .post[id^="c"] .footer {
+        html:is(.r34-comment-list, .r34-comment-user) #comment-list .post[id^="c"] .footer {
             margin-top:7px !important;
-
             color:#6f7781 !important;
-
             font-size:11px !important;
         }
 
-        html.r34-comment-list #comment-list .post[id^="c"] .footer a {
+        html:is(.r34-comment-list, .r34-comment-user) #comment-list .post[id^="c"] .footer a {
             color:#6f7781 !important;
-
             text-shadow:none !important;
         }
 
-        html.r34-comment-list #comment-list .post[id^="c"] .footer a:hover {
+        html:is(.r34-comment-list, .r34-comment-user) #comment-list .post[id^="c"] .footer a:hover {
             color:#86efac !important;
         }
 
         /* ALREADY REPORTED */
 
-        html.r34-comment-list #comment-list .post[id^="c"] .footer b {
+        html:is(.r34-comment-list, .r34-comment-user) #comment-list .post[id^="c"] .footer b {
             color:#666d75 !important;
             font-weight:600 !important;
         }
 
         /* HIDDEN COMMENTS */
 
-        html.r34-comment-list #comment-list > .content {
+        html:is(.r34-comment-list, .r34-comment-user) #comment-list > .content {
             margin:10px 0 !important;
-
             color:#6f7781 !important;
-
             font-size:12px !important;
         }
 
@@ -5483,6 +5494,939 @@
             box-shadow:0 0 10px rgba(34,197,94,.14) !important;
 
             transform:translateY(-1px) !important;
+        }
+
+        /* =========================
+         *  WIKI LIST
+         *  ========================= */
+
+        html.r34-wiki-list #content {
+            color:#c9cdd3 !important;
+        }
+
+        /* RECENT CHANGES */
+
+        html.r34-wiki-list #content > div:first-child {
+            color:#c9cdd3 !important;
+        }
+
+        html.r34-wiki-list #content a {
+            color:#86efac !important;
+            text-decoration:none !important;
+        }
+
+        html.r34-wiki-list #content a:hover {
+            color:#bbf7d0 !important;
+            text-shadow:0 0 7px rgba(34,197,94,.20) !important;
+        }
+
+        /* WIKI SEARCH */
+
+        html.r34-wiki-list #content input[type="text"],
+        html.r34-wiki-list #content input[type="search"] {
+            box-sizing:border-box !important;
+
+            min-height:38px !important;
+            padding:8px 12px !important;
+
+            background:#181c22 !important;
+            color:#e3e8ed !important;
+
+            border:1px solid #303740 !important;
+            border-radius:9px !important;
+
+            outline:none !important;
+
+            font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif !important;
+        }
+
+        html.r34-wiki-list #content input[type="text"]:focus,
+        html.r34-wiki-list #content input[type="search"]:focus {
+            border-color:#357546 !important;
+            box-shadow:0 0 10px rgba(34,197,94,.12) !important;
+        }
+
+        html.r34-wiki-list #content input[type="submit"],
+        html.r34-wiki-list #content input[type="button"] {
+            min-height:38px !important;
+            padding:0 16px !important;
+
+            background:linear-gradient(135deg,#22c55e,#16a34a) !important;
+            color:#fff !important;
+
+            border:1px solid #22c55e !important;
+            border-radius:999px !important;
+
+            font-weight:700 !important;
+
+            cursor:pointer !important;
+
+            box-shadow:0 0 10px rgba(34,197,94,.16) !important;
+        }
+
+        html.r34-wiki-list #content input[type="submit"]:hover,
+        html.r34-wiki-list #content input[type="button"]:hover {
+            box-shadow:
+            0 0 12px rgba(34,197,94,.24),
+                0 0 22px rgba(34,197,94,.10) !important;
+
+                transform:translateY(-1px) !important;
+        }
+
+        /* WIKI LIST */
+
+        html.r34-wiki-list #content h3 {
+            margin:20px 0 12px 0 !important;
+
+            color:#e3e8ed !important;
+
+            font-size:18px !important;
+            font-weight:700 !important;
+        }
+
+        /* WIKI ENTRY */
+
+        html.r34-wiki-list #content > div {
+            box-sizing:border-box !important;
+        }
+
+        html.r34-wiki-list #content > div a {
+            color:#86efac !important;
+        }
+
+        html.r34-wiki-list #content > div a:hover {
+            color:#bbf7d0 !important;
+        }
+
+        /* VERSION / META TEXT */
+
+        html.r34-wiki-list #content {
+            font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif !important;
+        }
+
+        html.r34-wiki-list #content small {
+            color:#6f7781 !important;
+        }
+
+        /* PAGINATOR */
+
+        html.r34-wiki-list #paginator {
+            display:flex !important;
+            align-items:center !important;
+            justify-content:center !important;
+            flex-wrap:wrap !important;
+            gap:6px !important;
+
+            width:fit-content !important;
+            max-width:96% !important;
+
+            box-sizing:border-box !important;
+
+            margin:28px auto !important;
+            padding:0 !important;
+
+            background:transparent !important;
+            border:none !important;
+            box-shadow:none !important;
+        }
+
+        html.r34-wiki-list #paginator a {
+            display:inline-flex !important;
+            align-items:center !important;
+            justify-content:center !important;
+
+            box-sizing:border-box !important;
+
+            min-width:38px !important;
+            height:38px !important;
+
+            padding:0 11px !important;
+            margin:0 !important;
+
+            background:#181c22 !important;
+            color:#9da5af !important;
+
+            border:1px solid #292f37 !important;
+            border-radius:9px !important;
+
+            font-size:14px !important;
+            font-weight:600 !important;
+            line-height:1 !important;
+
+            text-decoration:none !important;
+        }
+
+        html.r34-wiki-list #paginator a:hover {
+            background:#1b2820 !important;
+            color:#e3e8ed !important;
+
+            border-color:#357546 !important;
+
+            box-shadow:0 0 10px rgba(34,197,94,.14) !important;
+
+            transform:translateY(-1px) !important;
+        }
+
+        html.r34-wiki-list #paginator b,
+        html.r34-wiki-list #paginator strong,
+        html.r34-wiki-list #paginator span.current,
+        html.r34-wiki-list #paginator span.active,
+        html.r34-wiki-list #paginator span.selected,
+        html.r34-wiki-list #paginator .current,
+        html.r34-wiki-list #paginator .active,
+        html.r34-wiki-list #paginator .selected {
+            display:inline-flex !important;
+            align-items:center !important;
+            justify-content:center !important;
+
+            box-sizing:border-box !important;
+
+            min-width:38px !important;
+            height:38px !important;
+
+            padding:0 11px !important;
+            margin:0 !important;
+
+            background:linear-gradient(135deg,#22c55e,#16a34a) !important;
+            color:#fff !important;
+
+            border:1px solid #22c55e !important;
+            border-radius:9px !important;
+
+            font-size:14px !important;
+            font-weight:700 !important;
+            line-height:1 !important;
+
+            box-shadow:
+            0 0 10px rgba(34,197,94,.24),
+                0 0 22px rgba(34,197,94,.12) !important;
+
+                opacity:1 !important;
+        }
+
+        /* =========================
+         *  WIKI LIST TABLE
+         *  ========================= */
+
+        html.r34-wiki-list table.highlightable {
+            width:100% !important;
+            box-sizing:border-box !important;
+
+            border-collapse:separate !important;
+            border-spacing:0 !important;
+
+            background:#111419 !important;
+            color:#c9cdd3 !important;
+
+            border:1px solid #245a34 !important;
+            border-radius:14px !important;
+
+            overflow:hidden !important;
+
+            box-shadow:0 4px 18px rgba(0,0,0,.18) !important;
+        }
+
+        /* ROW */
+
+        html.r34-wiki-list table.highlightable tr {
+            background:#111419 !important;
+            transition:
+            background .15s ease,
+            box-shadow .15s ease !important;
+        }
+
+        html.r34-wiki-list table.highlightable tr:hover {
+            background:#151c18 !important;
+            box-shadow:inset 0 0 18px rgba(34,197,94,.05) !important;
+        }
+
+        /* CELLS */
+
+        html.r34-wiki-list table.highlightable td {
+            box-sizing:border-box !important;
+
+            padding:12px !important;
+
+            background:transparent !important;
+            color:#c9cdd3 !important;
+
+            border:none !important;
+            border-bottom:1px solid #245a34 !important;
+
+            font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif !important;
+        }
+
+        /* LAST ROW */
+
+        html.r34-wiki-list table.highlightable tr:last-child td {
+            border-bottom:none !important;
+        }
+
+        /* ICON */
+
+        html.r34-wiki-list table.highlightable td:first-child {
+            width:44px !important;
+
+            padding:10px !important;
+
+            text-align:center !important;
+            vertical-align:middle !important;
+        }
+
+        html.r34-wiki-list table.highlightable td:first-child img {
+            display:block !important;
+
+            width:auto !important;
+            max-width:24px !important;
+            height:auto !important;
+
+            margin:auto !important;
+        }
+
+        /* WIKI NAME */
+
+        html.r34-wiki-list table.highlightable td:nth-child(2) {
+            vertical-align:middle !important;
+        }
+
+        html.r34-wiki-list table.highlightable td:nth-child(2) > a {
+            color:#86efac !important;
+
+            font-size:14px !important;
+            font-weight:700 !important;
+
+            text-decoration:none !important;
+        }
+
+        html.r34-wiki-list table.highlightable td:nth-child(2) > a:hover {
+            color:#bbf7d0 !important;
+
+            text-shadow:0 0 7px rgba(34,197,94,.20) !important;
+        }
+
+        /* LAST UPDATED */
+
+        html.r34-wiki-list table.highlightable td:nth-child(2) span {
+            color:#6f7781 !important;
+
+            font-size:11px !important;
+            line-height:1.4 !important;
+        }
+
+        html.r34-wiki-list table.highlightable td:nth-child(2) span a {
+            color:#86efac !important;
+
+            font-weight:600 !important;
+        }
+
+        html.r34-wiki-list table.highlightable td:nth-child(2) span a:hover {
+            color:#bbf7d0 !important;
+        }
+
+        /* VERSION */
+
+        html.r34-wiki-list table.highlightable td:last-child {
+            width:130px !important;
+
+            text-align:center !important;
+            vertical-align:middle !important;
+
+            border-left:1px solid #245a34 !important;
+        }
+
+        html.r34-wiki-list table.highlightable td:last-child h3 {
+            margin:0 !important;
+
+            color:#c9cdd3 !important;
+
+            font-size:13px !important;
+            font-weight:700 !important;
+        }
+
+        /* WIKI CREATE */
+
+        html.r34-wiki-create .content > div {
+            color:#9da5af !important;
+        }
+
+        html.r34-wiki-create .content > div > div {
+            color:#9da5af !important;
+        }
+
+        html.r34-wiki-create .content h3 {
+            margin:0 0 12px 0 !important;
+            padding:0 !important;
+            color:#e3e8ed !important;
+            font-size:18px !important;
+            font-weight:700 !important;
+        }
+
+        html.r34-wiki-create .content form {
+            box-sizing:border-box !important;
+            width:100% !important;
+            margin:20px 0 0 0 !important;
+            padding:18px !important;
+            background:#111419 !important;
+            border:1px solid #245a34 !important;
+            border-radius:14px !important;
+            box-shadow:0 4px 18px rgba(0,0,0,.18) !important;
+            color:#9da5af !important;
+        }
+
+        html.r34-wiki-create .content form > br {
+            display:block !important;
+            content:"" !important;
+            height:10px !important;
+        }
+
+        html.r34-wiki-create .content input[type="text"],
+        html.r34-wiki-create .content textarea {
+            box-sizing:border-box !important;
+            width:100% !important;
+            margin-top:6px !important;
+            padding:10px 12px !important;
+            background:#181c22 !important;
+            color:#e3e8ed !important;
+            border:1px solid #303740 !important;
+            border-radius:9px !important;
+            outline:none !important;
+            font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif !important;
+            font-size:14px !important;
+            transition:
+            border-color .15s ease,
+            box-shadow .15s ease,
+            background .15s ease !important;
+        }
+
+        html.r34-wiki-create .content input[type="text"] {
+            height:42px !important;
+        }
+
+        html.r34-wiki-create .content textarea {
+            min-height:220px !important;
+            resize:vertical !important;
+            line-height:1.55 !important;
+        }
+
+        html.r34-wiki-create .content input[type="text"]:focus,
+        html.r34-wiki-create .content textarea:focus {
+            background:#1b2027 !important;
+            border-color:#357546 !important;
+            box-shadow:0 0 0 2px rgba(34,197,94,.08),
+                0 0 12px rgba(34,197,94,.10) !important;
+        }
+
+        html.r34-wiki-create .content input[type="text"]::placeholder,
+        html.r34-wiki-create .content textarea::placeholder {
+            color:#666d75 !important;
+        }
+
+        html.r34-wiki-create .content form > .cf-turnstile {
+            margin:14px 0 !important;
+        }
+
+        html.r34-wiki-create .content input[type="submit"] {
+            display:inline-flex !important;
+            align-items:center !important;
+            justify-content:center !important;
+            min-width:130px !important;
+            height:40px !important;
+            margin-top:8px !important;
+            padding:0 18px !important;
+            background:linear-gradient(135deg,#22c55e,#16a34a) !important;
+            color:#fff !important;
+            border:1px solid #22c55e !important;
+            border-radius:999px !important;
+            box-shadow:
+            0 0 10px rgba(34,197,94,.20),
+                0 0 20px rgba(34,197,94,.08) !important;
+                font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif !important;
+                font-size:14px !important;
+                font-weight:700 !important;
+                cursor:pointer !important;
+                transition:
+                transform .15s ease,
+                box-shadow .15s ease,
+                filter .15s ease !important;
+        }
+
+        html.r34-wiki-create .content input[type="submit"]:hover {
+            filter:brightness(1.05) !important;
+            box-shadow:
+            0 0 12px rgba(34,197,94,.28),
+                0 0 24px rgba(34,197,94,.12) !important;
+                transform:translateY(-1px) !important;
+        }
+
+        html.r34-wiki-create .content input[type="submit"]:active {
+            transform:translateY(0) !important;
+        }
+
+        /* WIKI VIEW */
+
+        html.r34-wiki-view #content > .flexi {
+            display:flex !important;
+            align-items:flex-start !important;
+            gap:20px !important;
+            width:100% !important;
+            box-sizing:border-box !important;
+        }
+
+        html.r34-wiki-view #content > .flexi > div:first-child {
+            flex:1 1 50% !important;
+            box-sizing:border-box !important;
+            min-width:0 !important;
+            padding:20px !important;
+            background:#111419 !important;
+            border:1px solid #245a34 !important;
+            border-radius:14px !important;
+            color:#c9cdd3 !important;
+            text-align:left !important;
+            box-shadow:0 4px 18px rgba(0,0,0,.18) !important;
+        }
+
+        html.r34-wiki-view #content > .flexi > div:nth-child(2) {
+            flex:1 1 50% !important;
+            box-sizing:border-box !important;
+            min-width:0 !important;
+            padding:16px !important;
+            background:#111419 !important;
+            border:1px solid #245a34 !important;
+            border-radius:14px !important;
+            box-shadow:0 4px 18px rgba(0,0,0,.18) !important;
+        }
+
+        /* ARTICLE TITLE */
+
+        html.r34-wiki-view #content > .flexi > div:first-child h2 {
+            display:block !important;
+            margin:0 0 8px 0 !important;
+            color:#e3e8ed !important;
+            font-size:22px !important;
+            font-weight:700 !important;
+            line-height:1.3 !important;
+        }
+
+        html.r34-wiki-view #content > .flexi > div:first-child > span {
+            display:inline-block !important;
+            margin-bottom:14px !important;
+            color:#86efac !important;
+            font-size:12px !important;
+        }
+
+        html.r34-wiki-view #content > .flexi > div:first-child > span b {
+            color:#86efac !important;
+        }
+
+        /* ARTICLE TEXT */
+
+        html.r34-wiki-view #content > .flexi > div:first-child {
+            font-size:14px !important;
+            line-height:1.65 !important;
+        }
+
+        html.r34-wiki-view #content > .flexi > div:first-child h4 {
+            margin:22px 0 8px 0 !important;
+            padding-bottom:7px !important;
+            color:#e3e8ed !important;
+            border-bottom:1px solid #245a34 !important;
+            font-size:16px !important;
+            font-weight:700 !important;
+        }
+
+        html.r34-wiki-view #content > .flexi > div:first-child a {
+            color:#86efac !important;
+            text-decoration:none !important;
+        }
+
+        html.r34-wiki-view #content > .flexi > div:first-child a:hover {
+            color:#bbf7d0 !important;
+            text-shadow:0 0 7px rgba(34,197,94,.20) !important;
+        }
+
+        /* WIKI INFORMATION BLOCKS */
+
+        html.r34-wiki-view #content > .flexi > div:first-child .lighter-background {
+            box-sizing:border-box !important;
+            width:100% !important;
+            margin-top:10px !important;
+            padding:11px 13px !important;
+            background:#181c22 !important;
+            border:1px solid #303740 !important;
+            border-radius:9px !important;
+            color:#9da5af !important;
+            line-height:1.5 !important;
+        }
+
+        html.r34-wiki-view #content > .flexi > div:first-child .lighter-background a {
+            color:#86efac !important;
+            font-weight:600 !important;
+        }
+
+        /* POST PREVIEWS */
+
+        html.r34-wiki-view #content > .flexi > div:nth-child(2) > a {
+            display:inline-block !important;
+            margin:4px !important;
+            vertical-align:top !important;
+        }
+
+        html.r34-wiki-view #content > .flexi > div:nth-child(2) span.thumb {
+            display:block !important;
+            overflow:hidden !important;
+            border-radius:10px !important;
+        }
+
+        html.r34-wiki-view #content > .flexi > div:nth-child(2) img.preview {
+            display:block !important;
+            border-radius:10px !important;
+            transition:
+            transform .15s ease,
+            box-shadow .15s ease !important;
+        }
+
+        html.r34-wiki-view #content > .flexi > div:nth-child(2) > a:hover img.preview {
+            transform:scale(1.03) !important;
+            box-shadow:0 0 12px rgba(34,197,94,.20) !important;
+        }
+
+        /* VIEW MORE */
+
+        html.r34-wiki-view #content > .flexi > div:nth-child(2) table {
+            margin-top:14px !important;
+        }
+
+        html.r34-wiki-view #content > .flexi > div:nth-child(2) table h3 {
+            margin:0 !important;
+        }
+
+        html.r34-wiki-view #content > .flexi > div:nth-child(2) table h3 a {
+            display:inline-flex !important;
+            align-items:center !important;
+            justify-content:center !important;
+            min-height:38px !important;
+            padding:0 18px !important;
+            background:linear-gradient(135deg,#22c55e,#16a34a) !important;
+            color:#fff !important;
+            border:1px solid #22c55e !important;
+            border-radius:999px !important;
+            font-size:14px !important;
+            font-weight:700 !important;
+            text-decoration:none !important;
+            box-shadow:0 0 12px rgba(34,197,94,.18) !important;
+            transition:
+            transform .15s ease,
+            box-shadow .15s ease !important;
+        }
+
+        html.r34-wiki-view #content > .flexi > div:nth-child(2) table h3 a:hover {
+            color:#fff !important;
+            transform:translateY(-1px) !important;
+            box-shadow:
+            0 0 14px rgba(34,197,94,.28),
+                0 0 24px rgba(34,197,94,.10) !important;
+        }
+
+        /* WIKI EDIT */
+
+        html.r34-wiki-edit #post-list {
+            display:flex !important;
+            align-items:flex-start !important;
+            gap:20px !important;
+            width:100% !important;
+            box-sizing:border-box !important;
+        }
+
+        /* SIDEBAR */
+
+        html.r34-wiki-edit #post-list > .sidebar {
+            flex:0 0 260px !important;
+            width:260px !important;
+            box-sizing:border-box !important;
+        }
+
+        html.r34-wiki-edit #post-list > .sidebar > div {
+            box-sizing:border-box !important;
+            width:100% !important;
+            padding:18px !important;
+            background:#111419 !important;
+            border:1px solid #245a34 !important;
+            border-radius:14px !important;
+            color:#9da5af !important;
+            font-size:13px !important;
+            line-height:1.55 !important;
+            box-shadow:0 4px 18px rgba(0,0,0,.18) !important;
+        }
+
+        html.r34-wiki-edit #post-list > .sidebar span {
+            color:#e3e8ed !important;
+            font-size:14px !important;
+        }
+
+        html.r34-wiki-edit #post-list > .sidebar a {
+            color:#86efac !important;
+            text-decoration:none !important;
+        }
+
+        html.r34-wiki-edit #post-list > .sidebar a:hover {
+            color:#bbf7d0 !important;
+            text-shadow:0 0 7px rgba(34,197,94,.20) !important;
+        }
+
+        /* EDITOR */
+
+        html.r34-wiki-edit #post-list > .content {
+            flex:1 1 auto !important;
+            min-width:0 !important;
+            box-sizing:border-box !important;
+            padding:20px !important;
+            background:#111419 !important;
+            border:1px solid #245a34 !important;
+            border-radius:14px !important;
+            color:#9da5af !important;
+            box-shadow:0 4px 18px rgba(0,0,0,.18) !important;
+        }
+
+        html.r34-wiki-edit #post-list > .content > h3 {
+            display:block !important;
+            margin:0 0 14px 0 !important;
+            color:#e3e8ed !important;
+            font-size:20px !important;
+            font-weight:700 !important;
+        }
+
+        /* FORM */
+
+        html.r34-wiki-edit #post-list > .content form {
+            width:100% !important;
+            box-sizing:border-box !important;
+            color:#9da5af !important;
+            font-size:13px !important;
+            line-height:1.5 !important;
+        }
+
+        html.r34-wiki-edit #post-list > .content form > input[type="text"] {
+            box-sizing:border-box !important;
+            width:100% !important;
+            height:42px !important;
+            margin-top:6px !important;
+            padding:10px 12px !important;
+            background:#181c22 !important;
+            color:#9da5af !important;
+            border:1px solid #303740 !important;
+            border-radius:9px !important;
+            outline:none !important;
+            font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif !important;
+            font-size:14px !important;
+            font-weight:600 !important;
+            cursor:not-allowed !important;
+            opacity:1 !important;
+        }
+
+        html.r34-wiki-edit #post-list > .content form > textarea {
+            box-sizing:border-box !important;
+            width:100% !important;
+            min-height:420px !important;
+            margin-top:6px !important;
+            padding:12px 14px !important;
+            background:#181c22 !important;
+            color:#e3e8ed !important;
+            border:1px solid #303740 !important;
+            border-radius:9px !important;
+            outline:none !important;
+            resize:vertical !important;
+            font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif !important;
+            font-size:14px !important;
+            line-height:1.55 !important;
+            tab-size:4 !important;
+            transition:
+            border-color .15s ease,
+            box-shadow .15s ease,
+            background .15s ease !important;
+        }
+
+        html.r34-wiki-edit #post-list > .content form > textarea:focus {
+            background:#1b2027 !important;
+            border-color:#357546 !important;
+            box-shadow:
+            0 0 0 2px rgba(34,197,94,.08),
+                0 0 12px rgba(34,197,94,.10) !important;
+        }
+
+        /* CAPTCHA */
+
+        html.r34-wiki-edit #post-list > .content .cf-turnstile {
+            margin:14px 0 !important;
+        }
+
+        /* SUBMIT */
+
+        html.r34-wiki-edit #post-list > .content input[type="submit"] {
+            display:inline-flex !important;
+            align-items:center !important;
+            justify-content:center !important;
+            min-width:125px !important;
+            height:40px !important;
+            margin-top:4px !important;
+            padding:0 18px !important;
+            background:linear-gradient(135deg,#22c55e,#16a34a) !important;
+            color:#fff !important;
+            border:1px solid #22c55e !important;
+            border-radius:999px !important;
+            box-shadow:
+            0 0 10px rgba(34,197,94,.20),
+                0 0 20px rgba(34,197,94,.08) !important;
+                font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif !important;
+                font-size:14px !important;
+                font-weight:700 !important;
+                cursor:pointer !important;
+                transition:
+                transform .15s ease,
+                box-shadow .15s ease,
+                filter .15s ease !important;
+        }
+
+        html.r34-wiki-edit #post-list > .content input[type="submit"]:hover {
+            filter:brightness(1.05) !important;
+            transform:translateY(-1px) !important;
+            box-shadow:
+            0 0 12px rgba(34,197,94,.28),
+                0 0 24px rgba(34,197,94,.12) !important;
+        }
+
+        html.r34-wiki-edit #post-list > .content input[type="submit"]:active {
+            transform:translateY(0) !important;
+        }
+
+        /* WARNING */
+
+        html.r34-wiki-edit #post-list > .content > center {
+            display:block !important;
+            box-sizing:border-box !important;
+            margin-top:16px !important;
+            padding:11px 13px !important;
+            background:#181c22 !important;
+            border:1px solid #303740 !important;
+            border-radius:9px !important;
+            color:#9da5af !important;
+            font-size:12px !important;
+            line-height:1.5 !important;
+            text-align:left !important;
+        }
+
+        /* WIKI HISTORY */
+
+        html.r34-wiki-history #content > div {
+            width:100% !important;
+            box-sizing:border-box !important;
+        }
+
+        html.r34-wiki-history #content h3 {
+            margin:0 0 14px 0 !important;
+            padding:0 !important;
+            color:#e3e8ed !important;
+            font-size:20px !important;
+            font-weight:700 !important;
+        }
+
+        html.r34-wiki-history #content table.highlightable {
+            width:100% !important;
+            box-sizing:border-box !important;
+            border-collapse:separate !important;
+            border-spacing:0 !important;
+            background:#111419 !important;
+            color:#c9cdd3 !important;
+            border:1px solid #245a34 !important;
+            border-radius:14px !important;
+            overflow:hidden !important;
+            box-shadow:0 4px 18px rgba(0,0,0,.18) !important;
+        }
+
+        html.r34-wiki-history #content table.highlightable tr {
+            background:#111419 !important;
+            transition:
+            background .15s ease,
+            box-shadow .15s ease !important;
+        }
+
+        html.r34-wiki-history #content table.highlightable tr:hover {
+            background:#151c18 !important;
+            box-shadow:inset 0 0 18px rgba(34,197,94,.05) !important;
+        }
+
+        html.r34-wiki-history #content table.highlightable td {
+            box-sizing:border-box !important;
+            padding:14px !important;
+            background:transparent !important;
+            color:#c9cdd3 !important;
+            border:none !important;
+            border-bottom:1px solid #245a34 !important;
+            font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif !important;
+            font-size:14px !important;
+            line-height:1.6 !important;
+            vertical-align:top !important;
+        }
+
+        html.r34-wiki-history #content table.highlightable tr:last-child td {
+            border-bottom:none !important;
+        }
+
+        /* VERSION */
+
+        html.r34-wiki-history #content table.highlightable td:first-child {
+            width:80px !important;
+            min-width:80px !important;
+            padding:14px 10px !important;
+            color:#86efac !important;
+            font-size:15px !important;
+            font-weight:800 !important;
+            text-align:center !important;
+            vertical-align:top !important;
+            border-right:1px solid #245a34 !important;
+            white-space:nowrap !important;
+        }
+
+        /* REVISION CONTENT */
+
+        html.r34-wiki-history #content table.highlightable td:nth-child(2) {
+            color:#c9cdd3 !important;
+        }
+
+        html.r34-wiki-history #content table.highlightable td:nth-child(2) br {
+            line-height:1.2 !important;
+        }
+
+        /* LINKS */
+
+        html.r34-wiki-history #content table.highlightable a {
+            color:#86efac !important;
+            text-decoration:none !important;
+        }
+
+        html.r34-wiki-history #content table.highlightable a:hover {
+            color:#bbf7d0 !important;
+            text-shadow:0 0 7px rgba(34,197,94,.20) !important;
+        }
+
+        /* UPDATED BY / DATE */
+
+        html.r34-wiki-history #content table.highlightable td:nth-child(2) > span {
+            display:block !important;
+            margin-top:12px !important;
+            padding-top:9px !important;
+            color:#6f7781 !important;
+            border-top:1px solid #303740 !important;
+            font-size:11px !important;
+            line-height:1.4 !important;
+        }
+
+        html.r34-wiki-history #content table.highlightable td:nth-child(2) > span a {
+            color:#86efac !important;
+            font-weight:600 !important;
+        }
+
+        html.r34-wiki-history #content table.highlightable td:nth-child(2) > span span {
+            color:#666d75 !important;
         }
     }
 
@@ -5931,103 +6875,50 @@
             return;
         }
 
-        const rows =
-            document.querySelectorAll(
-                '#tag-sidebar li[class*="tag-type-"]'
-            );
+        const rows = document.querySelectorAll('#tag-sidebar li[class*="tag-type-"]');
 
-        for (
-            const row of rows
-        ) {
-
-            for (
-                const element of row.querySelectorAll(
-                    '[class*="count" i],small,em'
-                )
-            ) {
-
-                const text =
-                    element.textContent
-                        .replace(/\s+/g, ' ')
-                        .trim();
-
-                if (
-                    /^\d[\d,]*$/.test(text)
-                ) {
-
-                    element.classList.add(
-                        'r34-tag-count'
-                    );
+        for (const row of rows) {
+            for (const element of row.querySelectorAll('[class*="count" i],small,em')) {
+                const text = element.textContent.replace(/\s+/g, ' ').trim();
+                if (/^\d[\d,]*$/.test(text)) {
+                    element.classList.add('r34-tag-count');
                 }
             }
 
-
-            const walker =
-                document.createTreeWalker(
-                    row,
-                    NodeFilter.SHOW_TEXT
-                );
+            const walker = document.createTreeWalker(row, NodeFilter.SHOW_TEXT);
 
             const nodes = [];
 
-            while (
-                walker.nextNode()
-            ) {
-
-                nodes.push(
-                    walker.currentNode
-                );
+            while (walker.nextNode()) {
+                nodes.push(walker.currentNode);
             }
 
-
-            for (
-                const node of nodes
-            ) {
-
-                if (
-                    !node.parentElement
-                ) {
+            for (const node of nodes) {
+                if (!node.parentElement) {
                     continue;
                 }
 
-                if (
-                    node.parentElement.closest('a')
-                ) {
+                if (node.parentElement.closest('a')) {
                     continue;
                 }
 
-                if (
-                    node.parentElement.classList.contains(
-                        'r34-tag-count'
-                    )
-                ) {
+                if (node.parentElement.classList.contains('r34-tag-count')) {
                     continue;
                 }
 
-                const text =
-                    node.nodeValue || '';
+                const text = node.nodeValue || '';
 
-                if (
-                    !/^\s*[\d,]+\s*$/.test(text)
-                ) {
+                if (!/^\s*[\d,]+\s*$/.test(text)) {
                     continue;
                 }
 
-                const count =
-                    document.createElement(
-                        'span'
-                    );
+                const count = document.createElement('span');
 
-                count.className =
-                    'r34-tag-count';
+                count.className = 'r34-tag-count';
 
-                count.textContent =
-                    text.trim();
+                count.textContent = text.trim();
 
-                node.parentNode.replaceChild(
-                    count,
-                    node
-                );
+                node.parentNode.replaceChild(count, node);
             }
         }
     }
@@ -6043,17 +6934,8 @@
             return;
         }
 
-        for (
-            const header of document.querySelectorAll(
-                '#tag-sidebar h6'
-            )
-        ) {
-
-            const text =
-                header.textContent
-                    .replace(/\s+/g, ' ')
-                    .trim()
-                    .toLowerCase();
+        for (const header of document.querySelectorAll('#tag-sidebar h6')) {
+            const text = header.textContent.replace(/\s+/g, ' ').trim().toLowerCase();
 
             header.classList.remove(
                 'r34-section-character',
@@ -6063,54 +6945,16 @@
                 'r34-section-artist'
             );
 
-            if (
-                text.includes(
-                    'character'
-                )
-            ) {
-
-                header.classList.add(
-                    'r34-section-character'
-                );
-
-            } else if (
-                text.includes(
-                    'general'
-                )
-            ) {
-
-                header.classList.add(
-                    'r34-section-general'
-                );
-
-            } else if (
-                text.includes('meta') ||
-                text.includes('metadata')
-            ) {
-
-                header.classList.add(
-                    'r34-section-meta'
-                );
-
-            } else if (
-                text.includes(
-                    'copyright'
-                )
-            ) {
-
-                header.classList.add(
-                    'r34-section-copyright'
-                );
-
-            } else if (
-                text.includes(
-                    'artist'
-                )
-            ) {
-
-                header.classList.add(
-                    'r34-section-artist'
-                );
+            if (text.includes('character')) {
+                header.classList.add('r34-section-character');
+            } else if (text.includes('general')) {
+                header.classList.add('r34-section-general');
+            } else if (text.includes('meta') || text.includes('metadata')) {
+                header.classList.add('r34-section-meta');
+            } else if (text.includes('copyright')) {
+                header.classList.add('r34-section-copyright');
+            } else if (text.includes('artist')) {
+                header.classList.add('r34-section-artist');
             }
         }
     }
@@ -6126,41 +6970,17 @@
             return;
         }
 
-        const walker =
-            document.createTreeWalker(
-                document.body,
-                NodeFilter.SHOW_TEXT
-            );
+        const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
 
         const nodes = [];
 
-        while (
-            walker.nextNode()
-        ) {
-
-            nodes.push(
-                walker.currentNode
-            );
+        while (walker.nextNode()) {
+            nodes.push(walker.currentNode);
         }
 
-        for (
-            const node of nodes
-        ) {
-
-            if (
-                !node.nodeValue ||
-                !node.nodeValue.includes(
-                    'Filter AI posts'
-                )
-            ) {
-                continue;
-            }
-
-            node.nodeValue =
-                node.nodeValue.replace(
-                    /Filter AI posts/g,
-                    'Make Sam Altman EVIL'
-                );
+        for (const node of nodes) {
+            if (!node.nodeValue || !node.nodeValue.includes('Filter AI posts')) {continue;}
+            node.nodeValue = node.nodeValue.replace(/Filter AI posts/g, 'Make Sam Altman EVIL');
         }
     }
 
@@ -6173,53 +6993,29 @@
         return;
     }
 
-    const paragraphs =
-        document.querySelectorAll('p');
+    const paragraphs = document.querySelectorAll('p');
 
     for (const paragraph of paragraphs) {
-
-        if (
-            !paragraph.textContent.includes(
-                'Serving '
-            ) ||
-            !paragraph.textContent.includes(
-                'Running '
-            ) ||
-            !paragraph.textContent.includes(
-                'Gelbooru'
-            ) ||
-            !paragraph.textContent.includes(
-                'Beta 0.2'
-            )
-        ) {
-            continue;
-        }
+        if (!paragraph.textContent.includes('Serving ')
+            || !paragraph.textContent.includes('Running ')
+            || !paragraph.textContent.includes('Gelbooru')
+            || !paragraph.textContent.includes('Beta 0.2')
+        ) {continue;}
 
         /*
          * Не трогаем уже изменённый текст.
          */
 
-        if (
-            paragraph.textContent.includes(
-                'БИТУБИ СААААААС'
-            )
-        ) {
-            continue;
-        }
+        if (paragraph.textContent.includes('БИТУБИ СААААААС')) {continue;}
 
         /*
          * Находим непосредственно текстовый узел
          * после ссылки Gelbooru.
          */
 
-        const link =
-            paragraph.querySelector(
-                'a[href*="gelbooru.com"]'
-            );
+        const link = paragraph.querySelector('a[href*="gelbooru.com"]');
 
-        if (!link) {
-            continue;
-        }
+        if (!link) {continue;}
 
         /*
          * Ищем текстовый узел после ссылки,
@@ -6229,24 +7025,10 @@
         let node = link.nextSibling;
 
         while (node) {
-
-            if (
-                node.nodeType ===
-                Node.TEXT_NODE &&
-                node.nodeValue.includes(
-                    'Beta 0.2'
-                )
-            ) {
-
-                node.nodeValue =
-                    node.nodeValue.replace(
-                        'Beta 0.2',
-                        'Beta 0.2 - БИТУБИ СААААААС'
-                    );
-
+            if (node.nodeType === Node.TEXT_NODE && node.nodeValue.includes( 'Beta 0.2')) {
+                node.nodeValue = node.nodeValue.replace('Beta 0.2', 'Beta 0.2 - БИТУБИ СААААААС');
                 break;
             }
-
             node = node.nextSibling;
         }
     }
@@ -6296,31 +7078,16 @@
 
         updateUI();
 
-        setTimeout(
-            updateUI,
-            300
-        );
+        setTimeout(updateUI,300);
 
-        setTimeout(
-            updateUI,
-            1000
-        );
+        setTimeout(updateUI,1000);
 
 
-        if (
-            document.fonts &&
-            document.fonts.ready
-        ) {
-
-            document.fonts.ready
-                .then(
-                    () => {
+        if (document.fonts &&document.fonts.ready) {
+            document.fonts.ready.then(() => {
                         applyInterToElements();
                     }
-                )
-                .catch(
-                    () => {}
-                );
+                ).catch(() => {});
         }
     }
 
@@ -6329,11 +7096,7 @@
        DOM READY
        ========================================================= */
 
-    if (
-        document.readyState ===
-        'loading'
-    ) {
-
+    if (document.readyState ==='loading') {
         document.addEventListener(
             'DOMContentLoaded',
             start,

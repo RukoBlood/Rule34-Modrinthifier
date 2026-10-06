@@ -1,5 +1,10 @@
 # Changelogs
 
+## Beta 11 (4.2.9 Internal) - Moderate Update 3.
+- Redesigned wiki
+- Fixed comments section when accessed user comments
+- Fixed some ugly parts of generated js code.
+
 ## Beta 10 (4.2.3 Internal) - Moderate Update 2.
 - Comments tab redesigned.
 - Update section in artists fixed.

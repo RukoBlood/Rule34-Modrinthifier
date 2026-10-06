@@ -1,2 +1,1 @@
-1. https://rule34.xxx/index.php?page=comment&s=user fix. 
-2. https://rule34.xxx/index.php?page=wiki&s=list redesign.
+1. Most of the pages redesigned. Now i need to fix minor ones like mail, settings
